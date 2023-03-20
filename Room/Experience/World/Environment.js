@@ -19,7 +19,7 @@ export default class Environment{
         this.resources = this.experience.resources;
         this.setSunLight();
         // this.setGUI();
-
+        // just need to make sure that this is the room file
         }
 
         setGUI(){

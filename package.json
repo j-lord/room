@@ -1,5 +1,10 @@
 {
   "devDependencies": {
     "three": "^0.144.0"
+  },
+  "dependencies": {
+    "gsap": "^3.11.5",
+    "lil-gui": "^0.18.1",
+    "vite": "^4.2.0"
   }
 }
