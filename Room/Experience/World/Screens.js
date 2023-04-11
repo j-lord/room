@@ -84,7 +84,6 @@ export default class Screens
 //     setModel(){
 //         console.log(this.actualRoom);
 
-
 //         this.model = {}
 //         this.model.video = document.createElement('video');
 //         this.model.video.muted = false;

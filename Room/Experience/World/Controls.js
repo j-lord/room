@@ -3,6 +3,8 @@ import Experience from "../Experience.js";
 import GSAP from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 // import { ScrollSmoother } from "gsap/ScrollSmoother.js";
+// ScrollSmoother comes with the paid version of ScrollTrigger
+// may be worth adding if the site has scroll based animations
 
 export default class Controls{
     constructor(){

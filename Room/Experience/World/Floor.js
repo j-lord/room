@@ -6,12 +6,9 @@ export default class Room{
     constructor(){
         this.experience = new Experience();
         this.scene = this.experience.scene;
-
         this.setFloor();
-        
         }
-
-
+// this sets the floor in place, make larger than the scene to hide edges
     setFloor(){
         this.geometry = new THREE.PlaneGeometry( 800, 800, 800 );
         this.material = new THREE.MeshStandardMaterial({
