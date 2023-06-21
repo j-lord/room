@@ -25,7 +25,9 @@ export default class Camera{
             antialias: true
         });
         this.renderer.physicallyCorrectLights = true;
-        this.renderer.outputEncoding = THREE.sRGBEncoding;
+        // this.renderer.outputEncoding = THREE.sRGBEncoding; // Depreciated
+        // this.renderer.outputEncoding = THREE.SRGBColorSpace; // Depreciated
+        this.renderer.outputColorSpace = THREE.SRGBColorSpace;
         this.renderer.toneMapping = THREE.CineonToneMapping;
         this.renderer.toneMappingExposure = 1.75;
         this.renderer.shadowMap.enabled = true;
@@ -33,7 +35,9 @@ export default class Camera{
         this.renderer.setSize(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(Math.min(this.sizes.pixelRatio, 2));
         this.renderer.gammaOutput = true;
-        this.renderer.outputEncoding = THREE.sRGBEncoding
+        // this.renderer.outputEncoding = THREE.sRGBEncoding // Depreciated
+        // this.renderer.outputEncoding = THREE.SRGBColorSpace // Depreciated
+        this.renderer.outputColorSpace = THREE.SRGBColorSpace
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
         this.renderer.toneMappingExposure = 1.5;
         this.renderer.setClearColor(0x000000, 0);
