@@ -55,10 +55,10 @@ constructor(assets) {
                 console.log("Name")
                 console.log(this.video.texture[asset.name])
                 this.video.texture[asset.name].flipY = false; // may not need this
-                // this.video.texture[asset.name].minFilter = true;
+                
                 this.video.texture[asset.name].magFilter = THREE.NearestFilter;
                 this.video.texture[asset.name].generateMipmaps = false;
-                // this.video.texture[asset.name].encoding = THREE.sRGBEncoding;
+                this.video.texture[asset.name].encoding = THREE.sRGBEncoding;
                 this.video.texture[asset.name].encoding = THREE.SRGBColorSpace;
 
                 // now just need to flip the video or the texture 
