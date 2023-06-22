@@ -1,5 +1,5 @@
-// these are the files of the room and the screen in the room 
-// would like this to automatically address any models in file 
+// these are the files of the room and the computer screen in the room 
+
 export default [
 
 {
