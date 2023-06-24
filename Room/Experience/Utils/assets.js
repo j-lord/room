@@ -1,4 +1,4 @@
-// these are the files of the room and the computer screen in the room 
+// these are all of the models and screens that will be on the site
 
 export default [
 

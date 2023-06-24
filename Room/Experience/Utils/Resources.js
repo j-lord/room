@@ -11,16 +11,16 @@ constructor(assets) {
     this.renderer = this.experience.renderer;
     this.assets = assets;
 
-    // this will hold all of our assets
+    // items array will hold all of our assets
     this.items = {};
-    this.quue = this.assets.length;
+    this.que = this.assets.length;
     this.loaded = 0;
 
     this.setLoaders();
     this.startLoading();
     }
 
-    // we are using DRACO loader becuase we conpressed the blender file
+    // we are using DRACO loader because we compressed the blender file
     setLoaders(){
         this.loaders = {}
         this.loaders.gltfLoader = new GLTFLoader();
@@ -41,7 +41,6 @@ constructor(assets) {
             }else if (asset.type === "videoTexture"){
                 this.video = {};
                 this.video.texture = {};
-
                 this.video[asset.name] = document.createElement("video");
                 this.video[asset.name].muted = true;
                 this.video[asset.name].loop = true;
@@ -54,15 +53,12 @@ constructor(assets) {
                 this.video.texture[asset.name] = new THREE.VideoTexture(this.video[asset.name]);
                 console.log("Name")
                 console.log(this.video.texture[asset.name])
-                this.video.texture[asset.name].flipY = false; // may not need this
-                
+                // now just need to flip the video or the texture 
+                this.video.texture[asset.name].flipY = false;
                 this.video.texture[asset.name].magFilter = THREE.NearestFilter;
                 this.video.texture[asset.name].generateMipmaps = false;
-                this.video.texture[asset.name].encoding = THREE.sRGBEncoding;
+                // this.video.texture[asset.name].encoding = THREE.sRGBEncoding;
                 this.video.texture[asset.name].encoding = THREE.SRGBColorSpace;
-
-                // now just need to flip the video or the texture 
-                
                 this.singleAssetLoaded(asset, this.video.texture[asset.name]); // load the video texture
                 this.video[asset.name].play();
             }
@@ -71,8 +67,8 @@ constructor(assets) {
     singleAssetLoaded(asset, file){
         this.items[asset.name] = file;
         this.loaded++;
-        // this.emit("progress", this.loaded/this.quue);
-        if(this.loaded === this.quue){
+        // this.emit("progress", this.loaded/this.que);
+        if(this.loaded === this.que){
             this.emit("ready");
         }
     }
