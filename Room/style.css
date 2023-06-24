@@ -76,14 +76,19 @@ svg{
   overflow: hidden;
 }
 
-/* nav bar */
+/* nav bar ------------------------------------------*/
 .navbar{
   /* background-color: var(--color-background); */
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 64px;
+  box-shadow: 0px 2px 6px rgba(64, 64, 64, 0.298);
+  -webkit-font-smoothing: antialiased; /* make font more smooth */
+  /* measurements of header background */
   margin-top: 10px;
   background: none;
   z-index: 1;
-  width: 90%;
-  padding: 20px 60px;
+  width: 85%;
+  padding: 20px 50px;
   box-sizing: border-box;
   position: fixed;
   top: 0;
@@ -93,20 +98,46 @@ svg{
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 64px;
-  box-shadow: 0px 2px 6px rgba(64, 64, 64, 0.298);
-  -webkit-font-smoothing: antialiased;
-
+  /* glass effect */
   background-color: rgba(0, 0, 0, 0.605);
   backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
   -webkit-backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
+}
 
+.navbar-brand{
+  float: left;
+  width: 300px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.navbar-brand img {
+  float: left;
+  height: 50px;
+  padding-top: 10px;
+}
+.navbar-brand h1 {
+  float: left;
+  padding-top: 12px;
+  padding-bottom: 4px;
+  font-size: 35px;
+  color: white;
+  height: 60px;
+  text-align: middle;
+  position: relative;
+  z-index: 1;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif; 
+
+  padding-top: 8px;
+  font-style: normal; 
+  font-variant: normal;     
+  font-weight: 300; 
+  font-stretch: condensed;
+  left: 10px;
 }
 
 .navbar-list ul{
-  font-family: "Roboto Condensed";
+  font-family: "Roboto Condensed", Arial, sans-serif;
   display: flex;
   align-items: center;
   list-style: none;
@@ -116,9 +147,10 @@ svg{
 
 .navbar-list ul li{
   margin-left: 30px;
+  padding: 10px;
 }
 .navbar-list ul li a{
-  font-size:100%;
+  font-size:120%;
   text-decoration: none;
   color: rgb(220, 220, 220);
   font-weight: bold;
@@ -146,6 +178,7 @@ svg{
   transition: 0.5s ease-in-out;
 }
 /* button animation on hover */
+
 .navbar-list ul li button:hover{
   /* transform: translateY(-5px); */
   /* create shadow on hover */
@@ -154,16 +187,6 @@ svg{
   text-shadow: 0 0 5px #ffffff57;
 }
 
-.navbar-brand{
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 700;
-  /* background: linear-gradient(to right,#6e6eb5 10%, #71629f 51%, #634a98 100%); */
-  background: white;
-  -webkit-background-clip: text;
-  color: transparent;
-
-}
 
 
 .page-wrapper{
@@ -201,7 +224,7 @@ svg{
   align-items: center;
   background-color: var(--color-pink);
   border-radius: 999px;
-  margin: 0px 12px;
+  margin: 100px 12px;
   border: none;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -351,8 +374,9 @@ svg{
 
 .hero-second{
   position: absolute;
-  top: calc(50% - 100px);
-  right: 100px;
+  top: calc(50% - 50px);
+  right: 0px;
+  left: 0px;
   color: var(--color-text);
 }
 
@@ -364,20 +388,38 @@ svg{
   color: var(--color-text);
 }
 
-.hero-main-description{
-  font-size: 20px;
-  font-weight: 400;
-  color: rgb(0, 0, 0);
-  margin-bottom: 20px;
-  color: var(--color-text);
-}
-
 .hero-second-subheading{
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 400px;
   color: #fff;
   margin-bottom: 10px;
   color: var(--color-text);
+}
+
+.hero-main-description{
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 250px;
+  display: block;
+  font-size: 50px;
+  /* font-stretch: condensed; */
+  /* font-weight: bold; */
+  font-family: 'Clan Pro', sans-serif;
+  /* font-family: Futura, "Trebuchet MS", Arial, sans-serif;  font-weight: 100; */
+  /* https://www.myfonts.com/products/ot-cond-news-127248-clan-pro-365143 */
+  /* Want to use FF Clan but don't forget to purchase it first */
+  align-items: center;
+  text-align: center;
+  line-height: 40px;
+  color: #cdcdcd;
+  z-index: 0;
+
+  /* font-size: 20px;
+  font-weight: 400;
+  color: rgb(0, 0, 0);
+  margin-bottom: 20px;
+  color: var(--color-text); */
 }
 
 /* other colors override */
@@ -393,6 +435,12 @@ svg{
 }
 .green-text{
   color: var(--color-green)
+}
+.yellow-text{
+  color: rgb(207, 216, 122);
+  text-shadow: 0 0 2px #a8d30a;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;  font-weight: 100;
+
 }
 .green-border{
   border-color: var(--color-green)
