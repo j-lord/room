@@ -1,4 +1,4 @@
-// at the top of each file, need to put a summary of what each file does
+// This is everyone in the scene minus the camera/renderer/utils
 
 import * as THREE from 'three';
 import Experience from "../Experience.js"
@@ -17,7 +17,6 @@ export default class World{
         this.camera = this.experience.camera;
         this.resources = this.experience.resources;
         this.theme = this.experience.theme;
-
 
         this.resources.on("ready", () => {
             this.environment = new Environment();

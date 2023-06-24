@@ -77,25 +77,36 @@ svg{
 }
 
 /* nav bar */
-/* Fix the below in comparison to the video on the right */
 .navbar{
   /* background-color: var(--color-background); */
+  margin-top: 10px;
   background: none;
   z-index: 1;
   width: 90%;
-  padding: 0px 100px;
+  padding: 20px 60px;
   box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  height: 80px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 64px;
+  box-shadow: 0px 2px 6px rgba(64, 64, 64, 0.298);
+  -webkit-font-smoothing: antialiased;
+
+  background-color: rgba(0, 0, 0, 0.605);
+  backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
+
 }
 
 .navbar-list ul{
+  font-family: "Roboto Condensed";
   display: flex;
   align-items: center;
   list-style: none;
@@ -104,60 +115,43 @@ svg{
 }
 
 .navbar-list ul li{
-  margin-left: 50px;
+  margin-left: 30px;
 }
 .navbar-list ul li a{
-  font-size: 14px;
+  font-size:100%;
   text-decoration: none;
-  color: aliceblue;
+  color: rgb(220, 220, 220);
   font-weight: bold;
   display: block;
 }
-
 /* the try it button */
 .navbar-list ul li button{
-  background-image: linear-gradient(to right,#6e6eb5 10%, #71629f 51%, #634a98 100%);
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif; 
-  border-radius: 14px;
+  background-image: linear-gradient(to right,#6e6eb5 100%, #634a98 100%);
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  border-radius: 90px;
   text-align: center;
   border: none;
   outline: none;
-  /* outline-color: var(--color-background);; */
-  color: rgba(251, 255, 224);
+  /* border-color: rgba(0, 0, 0, 0); */
+  border: 1px solid transparent;
+  color: rgb(255, 255, 255);
   /* padding: 5px; */
   line-height: 30px;
   padding: 0px;
   display: inline;
   width: 100px;
-  height: 35px;
+  height: 40px;
   font-size: 24px;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 /* button animation on hover */
 .navbar-list ul li button:hover{
-  transform: translateY(-5px);
-}
-
-.scroll{
-  background-color: #333332;
-  top: -100px;
-  border-radius: 20px;
-  width: 90%; 
-  animation: fadedown .4s ease 1s forwards;
-}
-
-@keyframes fadedown {
-  0% {
-    top: -100px;
-    /* opacity: 0;
-    transform: translateY(-20px); */
-  }
-  100% {
-    top: 20px;
-    /* opacity: 1;
-    transform: translateY(0px); */
-  }
+  /* transform: translateY(-5px); */
+  /* create shadow on hover */
+  box-shadow: 0px 0px 7px rgba(177, 177, 177, 0.3);
+  /* Text glow effect */
+  text-shadow: 0 0 5px #ffffff57;
 }
 
 .navbar-brand{

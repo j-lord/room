@@ -17,15 +17,15 @@ export default class Experience {
         }
 
         Experience.instance = this
-        this.canvas = canvas;
-        this.scene = new THREE.Scene();
+        this.canvas = canvas;                   // Creates the canvas where the scene will be
+        this.scene = new THREE.Scene();         // Creates the scene
         this.time = new Time();                 // Event emitter for time updates
         this.sizes = new Sizes();               // Event emitter for resize updates
         this.camera = new Camera();             // Well, the camera stuff
         this.renderer = new Renderer();         // The renderer
-        this.resources = new Resources(assets);
+        this.resources = new Resources(assets); // Where all of the page assets are stored
         this.theme = new Theme();               // This toggles between dark and light mode
-        this.world = new World();
+        this.world = new World();               // ???
         
         this.sizes.on("resize", () => {
             this.resize();
