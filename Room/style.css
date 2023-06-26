@@ -8,7 +8,8 @@
 
 html, body {
   font-family: 'Montserrat', sans-serif;
-  color: var(--text-black)
+  /* color: var(--text-black); */
+  background-color: "black";
 }
 
 h1,
@@ -22,15 +23,14 @@ svg{
 :root{
   /* Light theme variables */
   --color-text-light: #333332;
-  --color-background-light: #FAF4E5;
+  --color-background-light: #000000;
   --color-pink-light: #e5a1aa;
-  --color-green-light: #7ad0ac;
+  --color-green-light: #344d42;
   --color-blue-light: #8395cd;
 
   /* dark theme variables */
   --color-text-dark: #faf4e5;
   --color-background-dark: #8395cd;
-
   --text-black: rgb(39, 39, 39);
   --color-background: rgb(249, 253, 241);
   --color-pink: rgb(90, 38, 41);
@@ -43,6 +43,14 @@ svg{
   --color-pink: var(--color-pink-light);
   --color-green: var(--color-green-light);
   --color-blue: var(--color-blue-light);
+  
+  /* Testing - adding black background for now */
+  background-image: linear-gradient(to bottom, rgb(0, 0, 0),
+  rgb(24, 19, 19),rgb(36, 38, 63),rgb(103, 116, 157), rgb(144,130,137));
+  /* background-color:black; */
+        /* testing  */
+        outline-style: solid;
+        outline-color: orange;
 }
 
 .dark-theme{
@@ -51,28 +59,34 @@ svg{
   --color-pink: var(--color-text-dark);
   --color-green: var(--color-text-dark);
   --color-blue: var(--color-text-dark);
+  
+  /* Testing - adding black background for now */
+  background-color:black;
 }
 
 /* Experience -------------------------------- */
-
 .experience{
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
+  position: relative;
+  width: 20vw;
+  height: 20vh;
 }
 
 .experience-canvas{
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
 }
 
 
 /* Web page itself -------------------------------- */
 .page{
   /* z-index: 99999; */
-  z-index: 0;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  z-index: -4;
+  width: 50%;
+  transform: translateX(50%);
+  top: calc(80%);
+  /* top: 600px; */
+  height: 600px;
   overflow: hidden;
 }
 
@@ -99,18 +113,20 @@ svg{
   justify-content: space-between;
   align-items: center;
   /* glass effect */
-  background-color: rgba(0, 0, 0, 0.605);
+  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
   -webkit-backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
-}
 
+      /* testing  */
+      /* outline-style: solid;
+      outline-color: rgb(255, 255, 255); */
+}
 .navbar-brand{
   float: left;
   width: 300px;
   height: 60px;
   cursor: pointer;
 }
-
 .navbar-brand img {
   float: left;
   height: 50px;
@@ -135,7 +151,6 @@ svg{
   font-stretch: condensed;
   left: 10px;
 }
-
 .navbar-list ul{
   font-family: "Roboto Condensed", Arial, sans-serif;
   display: flex;
@@ -144,13 +159,13 @@ svg{
   flex-direction: row;
   justify-content: space-between;
 }
-
 .navbar-list ul li{
-  margin-left: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
   padding: 10px;
 }
 .navbar-list ul li a{
-  font-size:120%;
+  font-size:18px;
   text-decoration: none;
   color: rgb(220, 220, 220);
   font-weight: bold;
@@ -158,6 +173,7 @@ svg{
 }
 /* the try it button */
 .navbar-list ul li button{
+  font-size: 20px;
   background-image: linear-gradient(to right,#6e6eb5 100%, #634a98 100%);
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   border-radius: 90px;
@@ -173,7 +189,6 @@ svg{
   display: inline;
   width: 100px;
   height: 40px;
-  font-size: 24px;
   cursor: pointer;
   transition: 0.5s ease-in-out;
 }
@@ -185,12 +200,6 @@ svg{
   box-shadow: 0px 0px 7px rgba(177, 177, 177, 0.3);
   /* Text glow effect */
   text-shadow: 0 0 5px #ffffff57;
-}
-
-
-
-.page-wrapper{
-  position: relative;
 }
 
 /* Dark / Light toggle -------------------------------- */
@@ -350,26 +359,246 @@ svg{
   color: var(--color-pink); 
 }
 
-/* Hero section  -------------------------------- */
-.hero{
-  width: 100vw;
-  height: 100vh;
-}
-
-.hero-wrapper{
+.page-wrapper{
   position: relative;
-  height: 100%;
-  width: calc(100% -80px);
-  margin: 0 auto;
-  max-width: 1200px;
+  /* top: calc(50% - 50px); */
+  /* top: calc(50% - 50px); */
+  height: 4500px;
+  width: 98vw;
+  right: 15px;
+  left: 15px;
+  padding-left: 10px;
+  margin-left: -10px;
+  margin-bottom: 10px;
+
+  /* overflow-y: auto; */
+  scrollbar-width: none;
+  &::-webkit-scrollbar{
+    display: none;
+    /* don't forget that this makes it so that nothing is selectable */
+    /* -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none; */
+  }
+
+  /* testing  */
+  outline-style: solid;
+  outline-width: 12px;
+  outline-color: rgba(255, 0, 153, 0.744);
 }
 
-.hero-main{
+/* Hero section  -------------------------------- */
+.hero1{
+  /* width: 100vw; */
+  /* height: 100vh; */
+
+
+  /* testing  delete all below once finished testing*/
   position: absolute;
-  top: 50px;
-  /* bottom: 200px; */
+  width: 97vw;
+  height: 98vh;
+  margin-top: 8px;
+  /* margin-left: 8px; */
+  outline-style: solid;
+  outline-width: 12px;
+  outline-color: green;
+}
+.hero2{
+  /* width: 100vw; */
+  /* height: 100vh; */
+/* position: relative; */
+  /* testing  delete all below once finished testing*/
+  position: relative;
+  top: 100vh;
+  width: 97vw;
+  height: 70vh;
+  margin-top: 8px;
+  /* margin-left: 8px; */
+  outline-style: solid;
+  outline-width: 12px;
+  outline-color: rgb(87, 255, 87);
+}
+
+.hero1-wrapper{
+  position: relative;
+  /* This is where you size up the hero section */
+  height: 100%;
+  width: 100vh;
+  margin: 0 auto;
+  /* max-width: 1500px; */
+
+    /* testing  */
+    outline-style: solid;
+    outline-color: rgb(4, 0, 255);
+}
+
+.hero1-main{
+  position: absolute;
+  /* top: calc(50% - 500px); */
+  height: 75vh;
+  right: 0px;
+  left: 0px;
+  /* color: var(--color-text); */
+  /* testing  */
+  outline-style: solid;
+  outline-color: red;
+  overflow-y: hidden; 
+  overflow-x: hidden;
+
+  scrollbar-width: none;
+	&::-webkit-scrollbar{
+    display: none;
+	}
+}
+
+
+.hero1-text{
+  position: relative;
+  top: calc(50% - 50px);
   left: 0;
-  color: var(--color-text);
+  right: 0;
+  /* bottom: 400px; */
+  display: block;
+  font-size: 60px;
+  font-family: 'Clan Pro', sans-serif;
+  /* font-family: Futura, "Trebuchet MS", Arial, sans-serif;  font-weight: 100; */
+  /* https://www.myfonts.com/products/ot-cond-news-127248-clan-pro-365143 */
+  /* Want to use FF Clan but don't forget to purchase it first */
+  align-items: center;
+  text-align: center;
+  letter-spacing: -1px;
+  line-height: 40px;
+  color: #cdcdcd;
+  z-index: 0;
+
+  /* testing  */
+  outline-style: solid;
+  outline-color: yellow;
+}
+/* stars */
+.stars{
+  background: url(/img/stars.png) repeat;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: -2;
+  height: 75vh;
+  width: 10000px;
+  bottom: 120px;
+
+  /* testing  delete all below when finished*/
+  /* position: relative; */
+  right: 4px;
+  left: 4px;
+  top: 4px;
+  /* bottom:  10px; */
+  bottom: calc(75vh - 10px);
+  outline-style: solid;
+  outline-color: cyan;
+
+}
+
+.twinkling {
+  width:100px;
+  height: 1500px;
+  background: transparent url(/img/twinkling.png) repeat;
+  /* background-color: #ac3d01; */
+  background-size: 500px 500px;
+  /* background-image: linear-gradient(to bottom,rgb(58, 64, 126),rgb(103, 116, 157)); */
+  /* background-size: 500px 500px; */
+  position: absolute;
+
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+
+  /* -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  -o-user-select:none;
+  user-select:none;
+
+  -moz-animation:move-background 70s infinite linear alternate;
+  -ms-animation:move-background 70s infinite linear alternate;
+  -o-animation:move-background 70s infinite linear alternate;
+  -webkit-animation:move-background 70s infinite linear alternate; */
+  /* animation:move-background 70s infinite linear alternate; */
+  animation:move-background 5s infinite linear alternate;
+}
+
+@keyframes move-background {
+  from {
+      -webkit-transform: translate3d(50vw, 0px, 0px);
+    }
+    to { 
+      -webkit-transform: translate3d(40vw, 0px, 0px);
+    }
+  }
+  /* animations working on other browsers */
+  /* @-webkit-keyframes move-background {
+  from {
+      -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+      -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+  }
+
+  @-moz-keyframes move-background {    
+    from {
+      -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+      -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+  }
+
+      @-webkit-keyframes move-background {
+    from {
+      -webkit-transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+      -webkit-transform: translate3d(1000px, 0px, 0px);
+    }
+  } */
+
+
+
+.moon {
+background: transparent url(/img/moon.png) no-repeat;
+float: right;
+width: 500px;
+height: 500px;
+position: relative;
+top: 50;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 1;
+/* margin: auto; */
+animation: animate 3s infinite ease alternate;
+
+/* testing  */
+/* outline-style: dotted;
+outline-width: 12px;
+outline-color: rgb(87, 255, 87); */
+
+@media only screen and (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+
+}
+
+@keyframes animate {
+  to {
+  transform: translateY(25px);
+  }
 }
 
 .hero-second{
@@ -378,14 +607,8 @@ svg{
   right: 0px;
   left: 0px;
   color: var(--color-text);
-}
 
-.hero-main-title{
-  font-size: 60px;
-  font-weight: 400;
-  color: #fff;
-  margin-bottom: 10px;
-  color: var(--color-text);
+
 }
 
 .hero-second-subheading{
@@ -396,31 +619,7 @@ svg{
   color: var(--color-text);
 }
 
-.hero-main-description{
-  position: relative;
-  left: 0;
-  right: 0;
-  bottom: 250px;
-  display: block;
-  font-size: 50px;
-  /* font-stretch: condensed; */
-  /* font-weight: bold; */
-  font-family: 'Clan Pro', sans-serif;
-  /* font-family: Futura, "Trebuchet MS", Arial, sans-serif;  font-weight: 100; */
-  /* https://www.myfonts.com/products/ot-cond-news-127248-clan-pro-365143 */
-  /* Want to use FF Clan but don't forget to purchase it first */
-  align-items: center;
-  text-align: center;
-  line-height: 40px;
-  color: #cdcdcd;
-  z-index: 0;
 
-  /* font-size: 20px;
-  font-weight: 400;
-  color: rgb(0, 0, 0);
-  margin-bottom: 20px;
-  color: var(--color-text); */
-}
 
 /* other colors override */
 
@@ -438,8 +637,9 @@ svg{
 }
 .yellow-text{
   color: rgb(207, 216, 122);
-  text-shadow: 0 0 2px #a8d30a;
-  font-family: Futura, "Trebuchet MS", Arial, sans-serif;  font-weight: 100;
+  text-shadow: 0 0 2px #b2cd4e;
+  font-family: 'Clan Pro', sans-serif;
+  letter-spacing: 5px;
 
 }
 .green-border{

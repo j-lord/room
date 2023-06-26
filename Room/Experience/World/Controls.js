@@ -20,7 +20,8 @@ export default class Controls{
                 this.rectLight = child; // need to do this to scale the light with the room
             }
         })
-        GSAP.registerPlugin(ScrollTrigger); // need to register plugin before using it
+        GSAP.registerPlugin(ScrollTrigger); 
+        // need to register plugin before using it
 
         this.setScrollTrigger();
 
@@ -49,7 +50,6 @@ export default class Controls{
         setScrollTrigger(){
             // from https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.matchMedia()
             ScrollTrigger.matchMedia({
-	
                 // desktop version
                 "(min-width: 969px)": ()=> {
                     console.log("desktop");
@@ -57,18 +57,18 @@ export default class Controls{
                     this.firstMoveTimeline = new GSAP.timeline({
                         scrollTrigger: {
                             trigger: ".first-move",
-                            // markers: true, // so we can see the scroll markers
+                            markers: true, // so we can see the scroll markers
                             start: "top top", // when the top of the trigger hits the top of the viewport
                             end: "bottom bottom", // when the bottom of the trigger hits the top of the viewport
                             scrub: 0.6,
                             invalidateOnRefresh: true,
                         }
                     });
-                    this.firstMoveTimeline.to(this.room.position, {
-                        x: () => {
-                            return this.sizes.width * 0.0014;
-                        }
-                    });
+                    // this.firstMoveTimeline.to(this.room.position, {
+                    //     x: () => {
+                    //         return this.sizes.width * 0.0014;
+                    //     }
+                    // });
 
                     // Second section ----------------------------------------------------
                     this.secondMoveTimeline = new GSAP.timeline({
@@ -81,55 +81,56 @@ export default class Controls{
                             invalidateOnRefresh: true,
                         },
                     });
-                    this.secondMoveTimeline.to(this.room.position, {
-                        x: () => {
-                            return 1;
-                        },
-                        z: () => {
-                            return this.sizes.height * 0.0032;
-                            }, 
-                        }, 
-                    "same" // given the same position tag so that the two animations happen at the same time
-                    );
-                    this.secondMoveTimeline.to(this.room.scale, {
-                        x: 0.4,
-                        y: 0.4,
-                        z: 0.4,
-                    },
-                    "same"
-                    );
-                    this.secondMoveTimeline.to(this.rectLight, {
-                        width: 0.5 * 4,
-                        height: 0.7 * 4,
-                    },
-                    "same"
-                    );
+                    
+                    // this.secondMoveTimeline.to(this.room.position, {
+                    //     x: () => {
+                    //         return 1;
+                    //     },
+                    //     z: () => {
+                    //         return this.sizes.height * 0.0032;
+                    //         }, 
+                    //     }, 
+                    // "same" // given the same position tag so that the two animations happen at the same time
+                    // );
+                    // this.secondMoveTimeline.to(this.room.scale, {
+                    //     x: 0.4,
+                    //     y: 0.4,
+                    //     z: 0.4,
+                    // },
+                    // "same"
+                    // );
+                    // this.secondMoveTimeline.to(this.rectLight, {
+                    //     width: 0.5 * 4,
+                    //     height: 0.7 * 4,
+                    // },
+                    // "same"
+                    // );
 
                     // Third section ----------------------------------------------------
                     // will animate the camera's position instead of the room's position
-                    this.thirdMoveTimeline = new GSAP.timeline({
-                        scrollTrigger: {
-                            trigger: ".third-move",
-                            // markers: true, // so we can see the scroll markers
-                            start: "top top", // when the top of the trigger hits the top of the viewport
-                            end: "bottom bottom", // when the bottom of the trigger hits the top of the viewport
-                            scrub: 0.6,
-                            invalidateOnRefresh: true,
-                        }
-                    });
-                    this.thirdMoveTimeline.to(this.camera.orthographicCamera.position, {
-                        y: -2.5,
-                        x: -3.1,
-                    });
-                },
-                // mobile version
-                "(max-width: 968px)": ()=> {
-                    console.log("mobile");
-                },
-                // all 
-                "all": function() {
-                }
-            }); 
+            //         this.thirdMoveTimeline = new GSAP.timeline({
+            //             scrollTrigger: {
+            //                 trigger: ".third-move",
+            //                 // markers: true, // so we can see the scroll markers
+            //                 start: "top top", // when the top of the trigger hits the top of the viewport
+            //                 end: "bottom bottom", // when the bottom of the trigger hits the top of the viewport
+            //                 scrub: 0.6,
+            //                 invalidateOnRefresh: true,
+            //             }
+            //         });
+            //         this.thirdMoveTimeline.to(this.camera.orthographicCamera.position, {
+            //             y: -2.5,
+            //             x: -3.1,
+            //         });
+            //     },
+            //     // mobile version
+            //     "(max-width: 968px)": ()=> {
+            //         console.log("mobile");
+            //     },
+            //     // all 
+            //     "all": function() {
+               }
+            });  
         //     console.log(this.room);
         //     this.timeline = new GSAP.timeline();
         //     this.timeline.to(this.room.position, {
