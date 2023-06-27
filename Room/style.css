@@ -504,7 +504,7 @@ svg{
 
 .twinkling {
   width:100px;
-  height: 1500px;
+  height: 100vh;
   background: transparent url(/img/twinkling.png) repeat;
   /* background-color: #ac3d01; */
   background-size: 500px 500px;
@@ -530,7 +530,7 @@ svg{
   -o-animation:move-background 70s infinite linear alternate;
   -webkit-animation:move-background 70s infinite linear alternate; */
   /* animation:move-background 70s infinite linear alternate; */
-  animation:move-background 5s infinite linear alternate;
+  animation:move-background 4s infinite linear alternate;
 }
 
 @keyframes move-background {
