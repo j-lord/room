@@ -1,3 +1,6 @@
+// This is where everything is consolidated 
+// all of the pieces are put together here
+
 import * as THREE from "three";
 import Sizes from "./Utils/Sizes.js";
 import Time from "./Utils/Time.js";

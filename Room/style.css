@@ -45,7 +45,9 @@ svg{
   --color-blue: var(--color-blue-light);
   
   /* Testing - adding black background for now */
-  background-image: linear-gradient(to bottom, rgb(0, 0, 0),
+  /* background-image: linear-gradient(to bottom, rgb(0, 0, 0),
+  rgb(24, 19, 19),rgb(36, 38, 63),rgb(103, 116, 157), rgb(144,130,137)); */
+  background-image: linear-gradient(to bottom, rgb(28, 28, 28),
   rgb(24, 19, 19),rgb(36, 38, 63),rgb(103, 116, 157), rgb(144,130,137));
   /* background-color:black; */
         /* testing  */
@@ -61,7 +63,7 @@ svg{
   --color-blue: var(--color-text-dark);
   
   /* Testing - adding black background for now */
-  background-color:black;
+  background-color:rgb(0, 0, 0);
 }
 
 /* Experience -------------------------------- */
@@ -475,15 +477,15 @@ svg{
   z-index: 0;
 
   /* testing  */
-  outline-style: solid;
-  outline-color: yellow;
+  /* outline-style: solid;
+  outline-color: yellow; */
 }
 /* stars */
 .stars{
   background: url(/img/stars.png) repeat;
   background-repeat: no-repeat;
   position: absolute;
-  z-index: -2;
+  z-index: -3;
   height: 75vh;
   width: 10000px;
   bottom: 120px;
@@ -514,7 +516,7 @@ svg{
   left: 0;
   top: 0;
   bottom: 0;
-  z-index: -1;
+  z-index: -2;
 
   /* -webkit-user-select:none;
   -khtml-user-select:none;
@@ -570,22 +572,22 @@ svg{
 
 
 .moon {
-background: transparent url(/img/moon.png) no-repeat;
+background: transparent url(/img/moonSmall.png) no-repeat;
 float: right;
-width: 500px;
-height: 500px;
+width: 400px;
+height: 400px;
 position: relative;
-top: 50;
-bottom: 0;
+/* top: 50; */
+/* bottom: 0;
 left: 0;
-right: 0;
-z-index: 1;
+right: 0; */
+z-index: -1;
 /* margin: auto; */
 animation: animate 3s infinite ease alternate;
 
 /* testing  */
 /* outline-style: dotted;
-outline-width: 12px;
+outline-width: 2px;
 outline-color: rgb(87, 255, 87); */
 
 @media only screen and (max-width: 768px) {
