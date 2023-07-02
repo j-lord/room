@@ -456,7 +456,6 @@ svg{
 	}
 }
 
-
 .hero1-text{
   position: relative;
   top: calc(50% - 50px);
@@ -466,12 +465,14 @@ svg{
   display: block;
   font-size: 60px;
   font-family: 'Clan Pro', sans-serif;
+  -webkit-user-select:none;   -khtml-user-select:none;  -moz-user-select:none;
+  -ms-user-select:none;       -o-user-select:none;      user-select:none;
   /* font-family: Futura, "Trebuchet MS", Arial, sans-serif;  font-weight: 100; */
   /* https://www.myfonts.com/products/ot-cond-news-127248-clan-pro-365143 */
   /* Want to use FF Clan but don't forget to purchase it first */
   align-items: center;
   text-align: center;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   line-height: 40px;
   color: #cdcdcd;
   z-index: 0;
@@ -506,9 +507,9 @@ svg{
   width:200vw;
   height: 100vh;
   background: transparent url(/img/twinkling.png) repeat;
-  /* background-color: #ac3d01; */
+  background-color: #ac3d01;
   background-size: 500px 500px;
-  /* background-image: linear-gradient(to bottom,rgb(58, 64, 126),rgb(103, 116, 157)); */
+  /* background-image: linear-gradient(to bottom,rgb(58, 64, 126,0.2),rgb(103, 116, 157,0.1)); */
   /* background-size: 500px 500px; */
   position: absolute;
 
@@ -529,84 +530,46 @@ svg{
   -ms-animation:move-background 50s infinite linear alternate;
   -o-animation:move-background 50s infinite linear alternate;
   -webkit-animation:move-background 50s infinite linear alternate;
-
-  /* -webkit-move-background: rays;
-  -webkit-move-background: 40s;
-  -webkit-move-background-iteration-count: 1;
-  -webkit-move-background-timing-function: linear;
-  -webkit-move-background-fill-mode: forwards; */
-
-
-
   
   animation:move-background 80s infinite cubic-bezier(0,.02,1,.98) alternate;
 }
 
 @keyframes move-background {
-  from {
-      -webkit-transform: translate3d(0vw, 0px, 0px);
-    }
-    to { 
-      -webkit-transform: translate3d(-50vw, 0px, 0px);
-    }
-  }
-  /* animations working on other browsers */
-  @-webkit-keyframes move-background {
-  from {
-      -webkit-transform: translate3d(0px, 0px, 0px);
-    }
-    to { 
-      -webkit-transform: translate3d(-50, 0px, 0px);
-    }
+  from { -webkit-transform: translate3d( 0vw, 0px, 0px); }
+    to { -webkit-transform: translate3d(-50vw, 0px, 0px); }
   }
 
-  @-moz-keyframes move-background {    
-    from {
-      -webkit-transform: translate3d(0px, 0px, 0px);
-    }
-    to { 
-      -webkit-transform: translate3d(-50, 0px, 0px);
-    }
+  .cloud1 { 
+    position: absolute; left: -50vw; top: 30vh;
+    width: 1600px; height: 800px; scale: 0.25; background: transparent url(/img/Cloud1.png) repeat; 
+    background-size: 1600px 800px; z-index: 3;
+    animation:move 30s linear infinite;
   }
-
-      @-webkit-keyframes move-background {
-    from {
-      -webkit-transform: translate3d(0px, 0px, 0px);
-    }
-    to { 
-      -webkit-transform: translate3d(-50, 0px, 0px);
-    }
+  .cloud2 { 
+    position: absolute; left: -50vw; bottom: 20vh;
+    width: 1600px; height: 800px; scale: 0.25; background: transparent url(/img/Cloud2.png) repeat; 
+    background-size: 1600px 800px; z-index: 3;
+    animation:move 25s linear infinite;
   }
-
-.clouds {
-  /* width:10000px; */
-  width:100%;
-
-  /* makes the hight of the clouds shorter than the height of the section (1000px) */
-	height: 800px; 
-	background: transparent url(/img/Cloud3.png) repeat;
-	background-size: 1600px 800px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 10;
-    z-index: 3;
-	/* -moz-animation:move-clouds 150s linear infinite;
-	-ms-animation:move-clouds 150s linear infinite;
-	-o-animation:move-clouds 150s linear infinite;
-	-webkit-animation:move-clouds 150s linear infinite; */
-  /* uncomment below for cloud animation  */
-	animation:move-clouds 60s linear infinite;
-}
-/* add animations for the other browsers */
-@keyframes move-clouds {
-  from {
-      -webkit-transform: translate3d(-100vw, 0px, 0px);
-    }
-    to { 
-      -webkit-transform: translate3d(100vw, 0px, 0px);
-    }
+  .cloud3 { 
+    position: absolute; left: -50vw; bottom: 35vh;
+    width: 1600px; height: 800px; scale: 0.25; background: transparent url(/img/Cloud3.png) repeat; 
+    background-size: 1600px 800px; z-index: 3;
+    animation:move 40s linear infinite;
   }
+  .cloud4 { 
+    position: absolute; left: -50vw; bottom: 0vh;
+    width: 1600px; height: 800px; scale: 0.25; background: transparent url(/img/Cloud1.png) repeat; 
+    background-size: 1600px 800px; z-index: 3;
+    animation:move 50s linear infinite;
+  }
+  @keyframes move {
+    from { -webkit-transform: translate3d(-100vw, 0px, 0px); }
+      to { -webkit-transform: translate3d( 600vw, 0px, 0px); }
+    }
+
+
+
 
 .moon {
 background: transparent url(/img/moonSmall.png) no-repeat;
