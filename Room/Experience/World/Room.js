@@ -38,7 +38,8 @@ export default class Room{
 
             // console.log(child);
 
-            if (child.name === "Aquarium") { // this is why naming is important in blender
+            // this is why naming is important in blender to help identify meshes
+            if (child.name === "Aquarium") { 
                 console.log(child)
                 child.children[7].material = new THREE.MeshPhysicalMaterial(); // this is for the fish tank
                 child.children[7].material.roughness = 0;

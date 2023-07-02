@@ -580,13 +580,13 @@ svg{
 
 .clouds {
   /* width:10000px; */
-  width:100vw;
+  width:100%;
 
   /* makes the hight of the clouds shorter than the height of the section (1000px) */
 	height: 800px; 
 	background: transparent url(/img/Cloud3.png) repeat;
 	background-size: 1600px 800px;
-    /* position: absolute; */
+    position: absolute;
     right: 0;
     top: 0;
     bottom: 10;
