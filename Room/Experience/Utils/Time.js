@@ -1,6 +1,4 @@
-// Need to add comments like this to every file 
-// So that we can understand what is going on
-// and see what we can copy / paste
+// time file has the update emitter for animations(delta, current, and elapsed time)
 
 import { EventEmitter } from "events";
 

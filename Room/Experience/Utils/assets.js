@@ -1,11 +1,16 @@
-// these are all of the models and screens that will be on the site
+// This file holds the names and routes to all of the assets used on the site (models/videos)
 
 export default [
-
 {
     name: "room",
     type: "glbModel",
     path: "/models/myRoom4.glb"
+},
+{
+    name: "bank",
+    type: "glbModel",
+    // path: "/textures/DemonSlayerLast30.mp4"
+    path: "/models/Bank.glb"
 },
 {
     name: "screen",
@@ -13,6 +18,5 @@ export default [
     // path: "/textures/DemonSlayerLast30.mp4"
     path: "/textures/DemonSlayerLast31.mp4"
 }
-];
 
-// need to also add another screen texture for the tv screen
+];

@@ -6,6 +6,7 @@ import Sizes from "./Utils/Sizes.js";
 import Time from "./Utils/Time.js";
 import Resources from "./Utils/Resources.js";
 import assets from "./Utils/assets.js";
+import Preloader from "./Preloader.js";
 
 import Camera from "./Camera.js";
 import Theme from "./Theme.js";
@@ -28,7 +29,8 @@ export default class Experience {
         this.renderer = new Renderer();         // The renderer
         this.resources = new Resources(assets); // Where all of the page assets are stored
         this.theme = new Theme();               // This toggles between dark and light mode
-        this.world = new World();               // ???
+        this.world = new World();               // Everything in the scene minus the camera/renderer/utils
+        // this.preloader = new Preloader();               // Everything in the scene minus the camera/renderer/utils
         
         this.sizes.on("resize", () => {
             this.resize();

@@ -1,4 +1,5 @@
-// this file will deal with all of the lighting and environment 
+// this file will deal with all of the lighting theme switching for the environment 
+
 import * as THREE from 'three';
 import Experience from "../Experience.js"
 import GSAP from "gsap";
@@ -48,6 +49,7 @@ export default class Environment{
         this.ambientLight = new THREE.AmbientLight( "#ffffff", 1); // soft white light
         this.scene.add(this.ambientLight)
     }
+
     
     switchTheme(theme){
         if(theme === "dark"){
@@ -55,7 +57,7 @@ export default class Environment{
             GSAP.to(this.sunLight.color,{
                 r: 0.36,
                 g: 0.38,
-                b: 0.50,
+                b: 0.50,                
             });
             GSAP.to(this.ambientLight.color,{
                 r: 0.38,

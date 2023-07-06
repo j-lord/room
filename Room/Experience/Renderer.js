@@ -73,7 +73,6 @@ export default class Camera{
         //     this.sizes.height - this.sizes.height / 3, 
         //     this.sizes.width / 3,
         //     this.sizes.height / 3);
- 
         // this.renderer.setScissor(
         //     this.sizes.width - this.sizes.width / 3, 
         //     this.sizes.height - this.sizes.height / 3, 

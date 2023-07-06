@@ -15,13 +15,21 @@ export default class Controls{
         this.sizes = this.experience.sizes;
         this.resources = this.experience.resources;
         this.time = this.experience.time;
-        this.camera = this.experience.camera;
-        this.room = this.experience.world.room.actualRoom;
-        this.room.children.forEach(child=>{
+        // this.camera = this.experience.camera;
+        // this.room = this.experience.world.room.actualRoom;
+        // this.room.children.forEach(child=>{
+        //     if(child.name === "RectAreaLight"){
+        //         this.rectLight = child; // need to do this to scale the light with the room
+        //     }
+        // })
+
+        this.bank = this.resources.items.bank.scene;
+        this.bank.children.forEach(child=>{
             if(child.name === "RectAreaLight"){
                 this.rectLight = child; // need to do this to scale the light with the room
             }
         })
+        
         GSAP.registerPlugin(ScrollTrigger); 
         // need to register plugin before using it
 

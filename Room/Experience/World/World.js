@@ -1,9 +1,9 @@
-// This is everyone in the scene minus the camera/renderer/utils
+// This is everything in the scene minus the camera/renderer/utils
 
 import * as THREE from 'three';
 import Experience from "../Experience.js"
 
-import Room from "./Room.js"
+import Bank from "./Bank.js"
 import Floor from "./Floor.js"
 import Controls from "./Controls.js"
 import Environment from "./Environment.js"
@@ -20,7 +20,8 @@ export default class World{
 
         this.resources.on("ready", () => {
             this.environment = new Environment();
-            this.room = new Room();
+            // this.room = new Room();
+            this.bank = new Bank();
             this.floor = new Floor();
             this.controls = new Controls();
         });
@@ -43,6 +44,9 @@ export default class World{
     update(){
         if(this.room){// if room exists, then update it
             this.room.update();
+        }
+        if(this.bank){// if room exists, then update it
+            this.bank.update();
         }
         if(this.controls){
             this.controls.update();

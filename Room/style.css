@@ -45,10 +45,10 @@ svg{
   --color-blue: var(--color-blue-light);
   
   /* Testing - adding black background for now */
-  /* background-image: linear-gradient(to bottom, rgb(0, 0, 0),
+  background-image: linear-gradient(to bottom, rgb(0, 0, 0),
+  rgb(0, 0, 0),rgb(69, 72, 120),rgb(103, 116, 157), rgb(144,130,137));
+  /* background-image: linear-gradient(to bottom, rgb(28, 28, 28),
   rgb(24, 19, 19),rgb(36, 38, 63),rgb(103, 116, 157), rgb(144,130,137)); */
-  background-image: linear-gradient(to bottom, rgb(28, 28, 28),
-  rgb(24, 19, 19),rgb(36, 38, 63),rgb(103, 116, 157), rgb(144,130,137));
   /* background-color:black; */
         /* testing  */
         outline-style: solid;
@@ -458,12 +458,14 @@ svg{
 
 .hero1-text{
   position: relative;
-  top: calc(50% - 50px);
+  height: 300px;
+  padding: 70px;
+  top: calc(50% - 100px);
   left: 0;
   right: 0;
   /* bottom: 400px; */
   display: block;
-  font-size: 60px;
+  font-size: 80px;
   font-family: 'Clan Pro', sans-serif;
   -webkit-user-select:none;   -khtml-user-select:none;  -moz-user-select:none;
   -ms-user-select:none;       -o-user-select:none;      user-select:none;
@@ -473,13 +475,22 @@ svg{
   align-items: center;
   text-align: center;
   letter-spacing: -0.5px;
-  line-height: 40px;
+  line-height: 55px;
   color: #cdcdcd;
   z-index: 0;
 
+  background-color: #494e8e;
+  background-image: linear-gradient(rgb(114, 120, 206),rgb(79, 86, 176),rgb(37, 67, 132));
+  /* background-image: linear-gradient(45deg, #f3ec78, #af4261); */
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+
   /* testing  */
-  /* outline-style: solid;
-  outline-color: yellow; */
+  outline-style: solid;
+  outline-color: yellow;
 }
 /* stars */
 .stars{
@@ -507,7 +518,7 @@ svg{
   width:200vw;
   height: 100vh;
   background: transparent url(/img/twinkling.png) repeat;
-  background-color: #ac3d01;
+  /* background-color: #ac3d01; */
   background-size: 500px 500px;
   /* background-image: linear-gradient(to bottom,rgb(58, 64, 126,0.2),rgb(103, 116, 157,0.1)); */
   /* background-size: 500px 500px; */
@@ -518,20 +529,16 @@ svg{
   top: 0;
   bottom: 0;
   z-index: -2;
+  /* Don't allow the star screen to be selected */
+  -webkit-user-select:none; -khtml-user-select:none;  -moz-user-select:none;
+  -ms-user-select:none;     -o-user-select:none;      user-select:none;
 
-  -webkit-user-select:none;
-  -khtml-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  -o-user-select:none;
-  user-select:none;
-
-  -moz-animation:move-background 50s infinite linear alternate;
-  -ms-animation:move-background 50s infinite linear alternate;
-  -o-animation:move-background 50s infinite linear alternate;
-  -webkit-animation:move-background 50s infinite linear alternate;
+  -webkit-animation:move-background 80s infinite cubic-bezier(0,.02,1,.98) alternate;
+  -moz-animation:move-background    80s infinite cubic-bezier(0,.02,1,.98) alternate;
+  -ms-animation:move-background     80s infinite cubic-bezier(0,.02,1,.98) alternate;
+  -o-animation:move-background      80s infinite cubic-bezier(0,.02,1,.98) alternate;
+  animation:move-background         80s infinite cubic-bezier(0,.02,1,.98) alternate;
   
-  animation:move-background 80s infinite cubic-bezier(0,.02,1,.98) alternate;
 }
 
 @keyframes move-background {
@@ -568,22 +575,14 @@ svg{
       to { -webkit-transform: translate3d( 600vw, 0px, 0px); }
     }
 
-
-
-
 .moon {
 background: transparent url(/img/moonSmall.png) no-repeat;
 float: right;
 width: 400px;
 height: 400px;
 position: relative;
-/* top: 50; */
-/* bottom: 0;
-left: 0;
-right: 0; */
 z-index: -1;
-/* margin: auto; */
-animation: animate 3s infinite ease alternate;
+animation: animate 4s infinite cubic-bezier(0,.02,1,.98) alternate;
 
 /* testing  */
 /* outline-style: dotted;
@@ -621,8 +620,6 @@ outline-color: rgb(87, 255, 87); */
   color: var(--color-text);
 }
 
-
-
 /* other colors override */
 
 .blue-text{
@@ -638,8 +635,8 @@ outline-color: rgb(87, 255, 87); */
   color: var(--color-green)
 }
 .yellow-text{
-  color: rgb(207, 216, 122);
-  text-shadow: 0 0 2px #b2cd4e;
+  color: var(--color-pink-light);
+  text-shadow: 0 0 2px #f9edff;
   font-family: 'Clan Pro', sans-serif;
   letter-spacing: 5px;
 

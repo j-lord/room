@@ -32,27 +32,28 @@ export default class Camera{
             -40,
             40
         );
-        this.orthographicCamera.position.y = 0.8;
-        // this.orthographicCamera.position.z = 0; // don't need this 
-        this.orthographicCamera.position.x = 1.8; 
-        this.orthographicCamera.rotation.x = -Math.PI/8;
+        this.orthographicCamera.position.y = 2.8;
+        this.orthographicCamera.position.x = 2.8; 
+        this.orthographicCamera.rotation.x = -Math.PI/5;
         this.orthographicCamera.zoom = 0.8;
+        // this.orthographicCamera.position.z = 0; // don't need this 
         
         
         
 
-
-        this.scene.add(this.orthographicCamera);
+        this.scene.add(this.perspectiveCamera);
+        // this.scene.add(this.orthographicCamera);
 
         this.helper = new THREE.CameraHelper(this.orthographicCamera);
-        this.scene.add(this.helper);
+        // this.scene.add(this.helper);
 
         this.orthographicCamera.position.z = 4; 
-        this.scene.add(this.orthographicCamera);
+        // this.scene.add(this.orthographicCamera);
 
     const size = 10;
     const divisions = 10;
 
+    // helper lines for the camera's position 
     const gridHelper = new THREE.GridHelper( size, divisions );
     this.scene.add( gridHelper );
 

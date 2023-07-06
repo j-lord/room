@@ -1,4 +1,4 @@
-// we should be able to delete this file
+// This is the file that imports the video textures and applies them to the computer mesh
 
 import * as THREE from 'three'
 
