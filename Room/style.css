@@ -46,7 +46,7 @@ svg{
   
   /* Testing - adding black background for now */
   background-image: linear-gradient(to bottom, rgb(0, 0, 0),
-  rgb(0, 0, 0),rgb(69, 72, 120),rgb(103, 116, 157), rgb(144,130,137));
+  rgb(0, 0, 0),rgb(0, 0, 0),rgb(31, 31, 52),rgb(103, 116, 157), rgb(144,130,137));
   /* background-image: linear-gradient(to bottom, rgb(28, 28, 28),
   rgb(24, 19, 19),rgb(36, 38, 63),rgb(103, 116, 157), rgb(144,130,137)); */
   /* background-color:black; */
@@ -69,26 +69,30 @@ svg{
 /* Experience -------------------------------- */
 .experience{
   position: relative;
-  width: 20vw;
-  height: 20vh;
+  /* width: 40vw;
+  height: 40vh; */
 }
 
 .experience-canvas{
-  width: 50%;
-  height: 50%;
+  position: absolute;
+  top: 100px;
+  z-index: -5;
 }
 
 
 /* Web page itself -------------------------------- */
 .page{
   /* z-index: 99999; */
+  width: 100vw;
+  height: 100vh;
   position: relative;
   z-index: -4;
-  width: 50%;
-  transform: translateX(50%);
-  top: calc(80%);
-  /* top: 600px; */
-  height: 600px;
+  /* width: 50%; */
+  transform: translateX(20%);
+  /* top: calc(80%); */
+  
+  top: 120vh;
+  
   overflow: hidden;
 }
 
@@ -397,11 +401,10 @@ svg{
   /* width: 100vw; */
   /* height: 100vh; */
 
-
   /* testing  delete all below once finished testing*/
   position: absolute;
   width: 97vw;
-  height: 98vh;
+  height: 100vh;
   margin-top: 8px;
   /* margin-left: 8px; */
   outline-style: solid;
@@ -409,16 +412,18 @@ svg{
   outline-color: green;
 }
 .hero2{
+  /* position: relative; */
   /* width: 100vw; */
   /* height: 100vh; */
-/* position: relative; */
-  /* testing  delete all below once finished testing*/
+  /* top: 100vh;  */
+  
+/* testing  delete all below once finished testing*/
   position: relative;
-  top: 100vh;
-  width: 97vw;
-  height: 70vh;
-  margin-top: 8px;
-  /* margin-left: 8px; */
+  /* top pushed hero2 below hero1 */
+  top: 100vh; 
+  width: 100%;
+  height: 100vh;
+
   outline-style: solid;
   outline-width: 12px;
   outline-color: rgb(87, 255, 87);
@@ -440,7 +445,7 @@ svg{
 .hero1-main{
   position: absolute;
   /* top: calc(50% - 500px); */
-  height: 75vh;
+  height: 100vh;
   right: 0px;
   left: 0px;
   /* color: var(--color-text); */
@@ -455,17 +460,35 @@ svg{
     display: none;
 	}
 }
+.hero2-main{
+  position: absolute;
+  /* top: calc(50% - 500px); */
+  height: 100%;
+  right: 0px;
+  left: 0px;
+  /* color: var(--color-text); */
+  /* testing  */
+  /* outline-style: solid; */
+  /* outline-color: rgb(127, 63, 63); */
+  overflow-y: hidden; 
+  overflow-x: hidden;
+
+  scrollbar-width: none;
+	&::-webkit-scrollbar{
+    display: none;
+	}
+}
 
 .hero1-text{
   position: relative;
   height: 300px;
   padding: 70px;
-  top: calc(50% - 100px);
+  top: calc(50% - 35vh);
   left: 0;
   right: 0;
   /* bottom: 400px; */
   display: block;
-  font-size: 80px;
+  font-size: 60px;
   font-family: 'Clan Pro', sans-serif;
   -webkit-user-select:none;   -khtml-user-select:none;  -moz-user-select:none;
   -ms-user-select:none;       -o-user-select:none;      user-select:none;
@@ -475,7 +498,7 @@ svg{
   align-items: center;
   text-align: center;
   letter-spacing: -0.5px;
-  line-height: 55px;
+  line-height: 40px;
   color: #cdcdcd;
   z-index: 0;
 
@@ -492,13 +515,50 @@ svg{
   outline-style: solid;
   outline-color: yellow;
 }
+.hero2-text{
+  position: absolute;
+  height: 300px;
+  padding-top: 200px;
+  padding-bottom: 100px;
+  top: calc(50% - 55vh);
+  left: 0;
+  right: 0;
+  /* bottom: 400px; */
+  /* display: block; */
+  font-size: 160px;
+  font-family: 'Clan Pro', sans-serif;
+  -webkit-user-select:none;   -khtml-user-select:none;  -moz-user-select:none;
+  -ms-user-select:none;       -o-user-select:none;      user-select:none;
+  /* font-family: Futura, "Trebuchet MS", Arial, sans-serif;  font-weight: 100; */
+  /* https://www.myfonts.com/products/ot-cond-news-127248-clan-pro-365143 */
+  /* Want to use FF Clan but don't forget to purchase it first */
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.5px;
+  line-height: 0px;
+  /* color: #c2c2c2; */
+
+  /* background-color: #494e8e; */
+  background-image: linear-gradient(rgb(190, 166, 216) 30%,rgb(86, 93, 157),rgb(31, 16, 66));
+  /* background-image: linear-gradient(45deg, #f3ec78, #af4261); */
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+
+
+  /* testing  */
+  outline-style: solid;
+  outline-color: yellow;
+}
 /* stars */
 .stars{
   background: url(/img/stars.png) repeat;
   background-repeat: no-repeat;
   position: absolute;
   z-index: -3;
-  height: 75vh;
+  height: 100vh;
   width: 10000px;
   bottom: 120px;
 
@@ -550,25 +610,25 @@ svg{
     position: absolute; left: -50vw; top: 30vh;
     width: 1600px; height: 800px; scale: 0.25; background: transparent url(/img/Cloud1.png) repeat; 
     background-size: 1600px 800px; z-index: 3;
-    animation:move 30s linear infinite;
+    animation:move 40s linear infinite;
   }
   .cloud2 { 
     position: absolute; left: -50vw; bottom: 20vh;
     width: 1600px; height: 800px; scale: 0.25; background: transparent url(/img/Cloud2.png) repeat; 
     background-size: 1600px 800px; z-index: 3;
-    animation:move 25s linear infinite;
+    animation:move 35s linear infinite;
   }
   .cloud3 { 
     position: absolute; left: -50vw; bottom: 35vh;
     width: 1600px; height: 800px; scale: 0.25; background: transparent url(/img/Cloud3.png) repeat; 
     background-size: 1600px 800px; z-index: 3;
-    animation:move 40s linear infinite;
+    animation:move 47s linear infinite;
   }
   .cloud4 { 
     position: absolute; left: -50vw; bottom: 0vh;
     width: 1600px; height: 800px; scale: 0.25; background: transparent url(/img/Cloud1.png) repeat; 
     background-size: 1600px 800px; z-index: 3;
-    animation:move 50s linear infinite;
+    animation:move 38s linear infinite;
   }
   @keyframes move {
     from { -webkit-transform: translate3d(-100vw, 0px, 0px); }

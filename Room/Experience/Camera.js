@@ -30,24 +30,33 @@ export default class Camera{
             this.sizes.frustrum/2.2,
             -this.sizes.frustrum/2.2,
             -40,
-            40
-        );
-        this.orthographicCamera.position.y = 2.8;
-        this.orthographicCamera.position.x = 2.8; 
-        this.orthographicCamera.rotation.x = -Math.PI/5;
-        this.orthographicCamera.zoom = 0.8;
-        // this.orthographicCamera.position.z = 0; // don't need this 
-        
-        
-        
+            40);
+            
+            // this.orthographicCamera = new THREE.OrthographicCamera(
+                //     (-this.sizes.aspect * this.sizes.frustrum/2.2),
+                //     (this.sizes.aspect * this.sizes.frustrum/2.2),
+                //     this.sizes.frustrum/2.2,
+                //     -this.sizes.frustrum/2.2,
+                //     -40,
+                //     40);
 
-        this.scene.add(this.perspectiveCamera);
-        // this.scene.add(this.orthographicCamera);
+                this.orthographicCamera.position.x = 1.5;
+                this.orthographicCamera.position.y = 0;
+                this.orthographicCamera.position.z = 1.5; 
+
+                this.orthographicCamera.zoom = 0.6;
+                this.orthographicCamera.rotation.order = 'YXZ';
+                this.orthographicCamera.rotation.y = Math.PI / 4;
+                this.orthographicCamera.rotation.x = Math.atan( - 1 / Math.sqrt( 2 ) );
+                
+
+        // this.scene.add(this.perspectiveCamera);
+        this.scene.add(this.orthographicCamera);
 
         this.helper = new THREE.CameraHelper(this.orthographicCamera);
         // this.scene.add(this.helper);
 
-        this.orthographicCamera.position.z = 4; 
+        
         // this.scene.add(this.orthographicCamera);
 
     const size = 10;
@@ -55,10 +64,10 @@ export default class Camera{
 
     // helper lines for the camera's position 
     const gridHelper = new THREE.GridHelper( size, divisions );
-    this.scene.add( gridHelper );
+    // this.scene.add( gridHelper );
 
     const axesHelper = new THREE.AxesHelper( 10 );
-    this.scene.add( axesHelper );
+    // this.scene.add( axesHelper );
 
     }
 

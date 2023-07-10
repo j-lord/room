@@ -21,13 +21,13 @@ export default class Sizes extends EventEmitter {
             this.pixelRatio = Math.min(window.devicePixelRatio, 2);
             this.emit("resize");
 
-            // if (this.width < 968 && this.device !== "mobile") {
-            //     this.device = "mobile";
-            //     this.emit("switchdevice", this.device);
-            // } else if (this.width >= 968 && this.device !== "desktop") {
-            //     this.device = "desktop";
-            //     this.emit("switchdevice", this.device);
-            // }
+            if (this.width < 968 && this.device !== "mobile") {
+                this.device = "mobile";
+                this.emit("switchdevice", this.device);
+            } else if (this.width >= 968 && this.device !== "desktop") {
+                this.device = "desktop";
+                this.emit("switchdevice", this.device);
+            }
         });
     }
 }

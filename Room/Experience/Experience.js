@@ -30,7 +30,7 @@ export default class Experience {
         this.resources = new Resources(assets); // Where all of the page assets are stored
         this.theme = new Theme();               // This toggles between dark and light mode
         this.world = new World();               // Everything in the scene minus the camera/renderer/utils
-        // this.preloader = new Preloader();               // Everything in the scene minus the camera/renderer/utils
+        // this.preloader = new Preloader();    // Everything in the scene minus the camera/renderer/utils
         
         this.sizes.on("resize", () => {
             this.resize();

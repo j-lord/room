@@ -29,6 +29,13 @@ export default class Room{
 
     }
     update(){
+        this.lerp.current = GSAP.utils.interpolate(
+            this.lerp.current,
+            this.lerp.target,
+            this.lerp.ease
+        );
+
+        this.floor.rotation.y = this.lerp.current;
 
     }
 

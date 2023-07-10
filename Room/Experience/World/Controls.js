@@ -219,12 +219,12 @@ export default class Controls{
         // this.camera.orthographicCamera.lookAt(this.crossVector); // look at the cross vector
 
         // // comment out the line below to see the camera move in a straight line
-        // // // console.log(this.lerp.current);
-        // // if(this.back){
-        // //     this.lerp.target -= 0.001;
-        // // }else{
-        // //     this.lerp.target += 0.001;
-        // // }
+        // // console.log(this.lerp.current);
+        // if(this.back){
+        //     this.lerp.target -= 0.001;
+        // }else{
+        //     this.lerp.target += 0.001;
+        // }
 
         // // // this makes it so there is definite stopping point at the top and bottom of the page
         // // console.log(this.lerp.current);

@@ -6,6 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import Experience from "../Experience.js";
 
+
 export default class Resources extends EventEmitter{
 constructor(assets) { // grab the assets from assets.js
     super(); // need to call super to access the EventEmitter
@@ -62,20 +63,21 @@ constructor(assets) { // grab the assets from assets.js
                 // this.video.texture[asset.name].encoding = THREE.sRGBEncoding;
                 this.video.texture[asset.name].encoding = THREE.SRGBColorSpace;
                 this.singleAssetLoaded(asset, this.video.texture[asset.name]); // load the video texture
-                this.video[asset.name].play();
+                // commenting out this play as is causing errors
+                // this.video[asset.name].play();
                 //   // Show loading animation.
                 
                 // Added this like based on Chrome DOM page: https://developer.chrome.com/blog/play-request-was-interrupted/
-                if (this.video[asset.name].play() !== undefined) {
-                    this.video[asset.name].play().then(_ => {
-                      // Automatic playback started!
-                      // Show playing UI.
-                    })
-                    .catch(error => {
-                      // Auto-play was prevented
-                      // Show paused UI.
-                    });
-                }
+                // if (this.video[asset.name].play() !== undefined) {
+                //     this.video[asset.name].play().then(_ => {
+                //       // Automatic playback started!
+                //       // Show playing UI.
+                //     })
+                //     .catch(error => {
+                //       // Auto-play was prevented
+                //       // Show paused UI.
+                //     });
+                // }
             }
         }
     }
