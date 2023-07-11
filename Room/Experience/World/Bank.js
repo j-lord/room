@@ -71,22 +71,28 @@ export default class Bank{
         const positionArray = new Float32Array(firefliesCount * 3)
         const scaleArray = new Float32Array(firefliesCount)
 
+        // location of all of the points
         for(let i = 0; i < firefliesCount; i++)
         {
             positionArray[i * 3 + 0] = (Math.random() - 0.5) * 2.3
-            positionArray[i * 3 + 1] = (Math.random() + 0.4)
+            positionArray[i * 3 + 1] = (Math.random() + 0.4) * 0.5
             positionArray[i * 3 + 2] = (Math.random() - 0.5) * 2.3
-
             scaleArray[i] = Math.random()
         }
 
+        // const hole = new THREE.Shape();
+
+        // for(let i = 0; i < firefliesCount; i++)
+        // {
+        //     hole[i * 3 + 0] = (Math.random() - 0.5)
+        //     hole[i * 3 + 1] = (Math.random() + 0.4)
+        //     hole[i * 3 + 2] = (Math.random() - 0.5)
+        //     // hole[i] = Math.random()
+        // }
+        // positionArray.hole.push(hole);
+
         firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
         firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
-        
-        
-        // Material start
-        // const firefliesMaterial = new THREE.PointsMaterial({ size: 10, sizeAttenuation: true })
-        // Material end
 
         // 
         this.firefliesMaterial = new THREE.ShaderMaterial({
@@ -94,7 +100,7 @@ export default class Bank{
             {   
                 uTime: { value: 0 },
                 uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-                uSize: { value: 300 } // change this value once testing is finished
+                uSize: { value: 30 } // change this value once testing is finished
             },
             vertexShader:
             `
@@ -105,18 +111,17 @@ export default class Bank{
 
             void main()
             {
-                vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+                vec4 modelPosition = modelMatrix * vec4(position, 0.8);
                 modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.2;
                 vec4 viewPosition = viewMatrix * modelPosition;
                 vec4 projectionPosition = projectionMatrix * viewPosition;
             
                 gl_Position = projectionPosition;
                 gl_PointSize = uSize * aScale * uPixelRatio;
-                // may not need the size attenuation below as the scene won't be moving much
-                //gl_PointSize *= (0.1 / - viewPosition.z);
             
             }`,
-            fragmentShader: `
+            fragmentShader:
+            `
             void main()
             {
                 // get the distance from the center of the particle to the outside
@@ -126,7 +131,7 @@ export default class Bank{
                 float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
                 
                 // color of the fireflies (vec4 (R,G,B,A))
-                gl_FragColor = vec4(0.5, 0.0, 0.6, strength);
+                gl_FragColor = vec4(0.1, 0.7, 0.3, strength);
             }`,
             transparent: true,
             // blends the colors of the particles with its background - rough on performances if there are a lot 
@@ -179,7 +184,7 @@ tick()
     onMouseMove(){
         window.addEventListener("mousemove", (e) => {
             this.rotation = ((e.clientX - window.innerWidth / 2) * 1) / window.innerWidth;
-            this.lerp.target = this.rotation * 4;
+            this.lerp.target = this.rotation * 0.08;
             
         });
     }
