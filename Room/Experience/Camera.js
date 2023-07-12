@@ -24,13 +24,14 @@ export default class Camera{
 
     // OTRHO CAMERA HERE
     createOrthographicCamera(){
+        const value = 2.6;
         this.orthographicCamera = new THREE.OrthographicCamera(
-            (-this.sizes.aspect * this.sizes.frustrum/2.2),
-            (this.sizes.aspect * this.sizes.frustrum/2.2),
-            this.sizes.frustrum/2.2,
-            -this.sizes.frustrum/2.2,
-            -40,
-            40);
+            (-this.sizes.aspect * this.sizes.frustrum/value),
+            (this.sizes.aspect * this.sizes.frustrum/value),
+            this.sizes.frustrum/value,
+            -this.sizes.frustrum/value,
+            -20,
+            20);
             
             // this.orthographicCamera = new THREE.OrthographicCamera(
                 //     (-this.sizes.aspect * this.sizes.frustrum/2.2),
@@ -47,7 +48,7 @@ export default class Camera{
                 this.orthographicCamera.zoom = 0.6;
                 this.orthographicCamera.rotation.order = 'YXZ';
                 this.orthographicCamera.rotation.y = Math.PI / 4;
-                this.orthographicCamera.rotation.x = Math.atan( - 1 / Math.sqrt( 2 ) );
+                this.orthographicCamera.rotation.x = Math.atan( - 1 / Math.sqrt( 4.5 ) );
                 
 
         // this.scene.add(this.perspectiveCamera);

@@ -100,7 +100,7 @@ export default class Bank{
             {   
                 uTime: { value: 0 },
                 uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-                uSize: { value: 30 } // change this value once testing is finished
+                uSize: { value: 40 } // change this value once testing is finished
             },
             vertexShader:
             `
@@ -131,7 +131,7 @@ export default class Bank{
                 float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
                 
                 // color of the fireflies (vec4 (R,G,B,A))
-                gl_FragColor = vec4(0.1, 0.7, 0.3, strength);
+                gl_FragColor = vec4(0.7, 0.6, 1, strength);
             }`,
             transparent: true,
             // blends the colors of the particles with its background - rough on performances if there are a lot 

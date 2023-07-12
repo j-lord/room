@@ -512,8 +512,8 @@ svg{
   -moz-text-fill-color: transparent;
 
   /* testing  */
-  outline-style: solid;
-  outline-color: yellow;
+  /* outline-style: solid;
+  outline-color: yellow; */
 }
 .hero2-text{
   position: absolute;
@@ -549,8 +549,8 @@ svg{
 
 
   /* testing  */
-  outline-style: solid;
-  outline-color: yellow;
+  /* outline-style: solid;
+  outline-color: yellow; */
 }
 /* stars */
 .stars{
