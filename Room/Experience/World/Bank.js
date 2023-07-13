@@ -67,7 +67,7 @@ export default class Bank{
         const gui = new dat.GUI({   width: 400  })
         
         const firefliesGeometry = new THREE.BufferGeometry()
-        const firefliesCount = 30
+        const firefliesCount = 60
         const positionArray = new Float32Array(firefliesCount * 3)
         const scaleArray = new Float32Array(firefliesCount)
 
@@ -76,20 +76,9 @@ export default class Bank{
         {
             positionArray[i * 3 + 0] = (Math.random() - 0.5) * 2.3
             positionArray[i * 3 + 1] = (Math.random() + 0.4) * 0.5
-            positionArray[i * 3 + 2] = (Math.random() - 0.5) * 2.3
+            positionArray[i * 3 + 2] = (Math.random() - 0.5) * 2.3            
             scaleArray[i] = Math.random()
         }
-
-        // const hole = new THREE.Shape();
-
-        // for(let i = 0; i < firefliesCount; i++)
-        // {
-        //     hole[i * 3 + 0] = (Math.random() - 0.5)
-        //     hole[i * 3 + 1] = (Math.random() + 0.4)
-        //     hole[i * 3 + 2] = (Math.random() - 0.5)
-        //     // hole[i] = Math.random()
-        // }
-        // positionArray.hole.push(hole);
 
         firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
         firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
@@ -100,7 +89,7 @@ export default class Bank{
             {   
                 uTime: { value: 0 },
                 uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-                uSize: { value: 40 } // change this value once testing is finished
+                uSize: { value: 10 } // change this value once testing is finished
             },
             vertexShader:
             `
@@ -131,7 +120,8 @@ export default class Bank{
                 float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
                 
                 // color of the fireflies (vec4 (R,G,B,A))
-                gl_FragColor = vec4(0.7, 0.6, 1, strength);
+                // gl_FragColor = vec4(0.7, 0.6, 1, strength); // purple
+                gl_FragColor = vec4(0.2, 0.9, 0.6, strength); // green
             }`,
             transparent: true,
             // blends the colors of the particles with its background - rough on performances if there are a lot 
@@ -184,7 +174,7 @@ tick()
     onMouseMove(){
         window.addEventListener("mousemove", (e) => {
             this.rotation = ((e.clientX - window.innerWidth / 2) * 1) / window.innerWidth;
-            this.lerp.target = this.rotation * 0.08;
+            this.lerp.target = this.rotation * 0.1;
             
         });
     }
