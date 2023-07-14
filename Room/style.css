@@ -77,6 +77,10 @@ svg{
   position: absolute;
   top: 100px;
   z-index: -5;
+
+        /* testing  */
+      /* outline-style: solid; */
+      /* outline-color: rgb(255, 0, 0); */
 }
 
 
@@ -539,7 +543,8 @@ svg{
   /* color: #c2c2c2; */
 
   /* background-color: #494e8e; */
-  background-image: linear-gradient(rgb(190, 166, 216) 30%,rgb(86, 93, 157),rgb(31, 16, 66));
+  /* background-image: linear-gradient(rgb(190, 166, 216) 30%,rgb(86, 93, 157),rgb(31, 16, 66)); */
+  background-image: linear-gradient(rgb(26, 76, 54) 30%,rgb(10, 70, 34),rgb(41, 139, 143));
   /* background-image: linear-gradient(45deg, #f3ec78, #af4261); */
   background-size: 100%;
   -webkit-background-clip: text;

@@ -22,7 +22,7 @@ export default class Room{
     this.plane.rotation.x = Math.PI/2;
     this.plane.position.y = -0.1;
     this.plane.receiveShadow = true;
-    this.scene.add( this.plane )
+    // this.scene.add( this.plane )
     }
 
     resize(){

@@ -75,10 +75,21 @@ export default class Bank{
         for(let i = 0; i < firefliesCount; i++)
         {
             positionArray[i * 3 + 0] = (Math.random() - 0.5) * 2.3
-            positionArray[i * 3 + 1] = (Math.random() + 0.4) * 0.5
+            positionArray[i * 3 + 1] = (Math.random() + 0.5) * 0.5
             positionArray[i * 3 + 2] = (Math.random() - 0.5) * 2.3            
+            // positionArray[i * 3 + 0] = (Math.random() - 0.5/2)
+            // positionArray[i * 3 + 1] = (Math.random() + 0.5/2)
+            // positionArray[i * 3 + 2] = (Math.random() - 0.5/2)            
             scaleArray[i] = Math.random()
         }
+        console.log("🚀 ~ file: Bank.js:81 ~ setFireFlies ~ positionArray:", positionArray)
+        
+        // trying to exclude the cube in the middle so no particles are going through the model
+        const newPositionArray = positionArray.filter(function(x){
+            return x > 1;
+        })
+        console.log("🚀 ~ file: Bank.js:90 ~ newPositionArray ~ newPositionArray:", newPositionArray)
+        
 
         firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
         firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
@@ -120,7 +131,7 @@ export default class Bank{
                 float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
                 
                 // color of the fireflies (vec4 (R,G,B,A))
-                // gl_FragColor = vec4(0.7, 0.6, 1, strength); // purple
+                // gl_FragColor = vec4(0.9, 0.6, 1, strength); // purple
                 gl_FragColor = vec4(0.2, 0.9, 0.6, strength); // green
             }`,
             transparent: true,
@@ -175,6 +186,7 @@ tick()
         window.addEventListener("mousemove", (e) => {
             this.rotation = ((e.clientX - window.innerWidth / 2) * 1) / window.innerWidth;
             this.lerp.target = this.rotation * 0.1;
+            // this.lerp.target = this.rotation * 6;
             
         });
     }

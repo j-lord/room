@@ -13,15 +13,28 @@ constructor(assets) { // grab the assets from assets.js
     this.experience  = new Experience();
     this.renderer = this.experience.renderer;
     this.assets = assets;
-
+    
     // items array will hold all of our assets
     this.items = {};
     this.que = this.assets.length;
     this.loaded = 0;
 
+
+    // setInterval(this.refresh, 5000, this);
     this.setLoaders();
     this.startLoading();
+
     }
+    // refresh(context){
+    //     console.log("🚀 Refreshing");
+    //     context.setLoaders();
+    //     console.log("🚀 setLoaders");
+    //     context.startLoading();
+    //     console.log("🚀 Refreshed");
+    // }
+
+        
+
 
     // we are using DRACO loader because we compressed the blender file
     setLoaders(){

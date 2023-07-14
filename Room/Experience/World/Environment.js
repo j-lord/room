@@ -11,7 +11,7 @@ export default class Environment{
         this.scene = this.experience.scene;
 
         // need to provide a container for the GUI so we can move it
-        // this.gui = new GUI({ container: document.querySelector('.hero-main') });
+        this.gui = new GUI({ container: document.querySelector('.hero-main') });
         this.obj = {
             colorObj: { r: 0, g: 0, b: 0 },
             intensity: 3,
@@ -38,10 +38,10 @@ export default class Environment{
     setSunLight(){
         this.sunLight = new THREE.DirectionalLight("#ffffff", 3);
         this.sunLight.castShadow = true;
-        this.sunLight.shadow.camera.far = 20;
+        this.sunLight.shadow.camera.far = 10;
         this.sunLight.shadow.mapSize.set(2048, 2048);
         this.sunLight.shadow.normalBias = 0.05;
-        // const helper = new THREE.CameraHelper(this.sunLight.shadow.camera);
+        const helper = new THREE.CameraHelper(this.sunLight.shadow.camera);
         // this.scene.add(helper);
         this.sunLight.position.set(-1.5, 7, 3);
         this.scene.add(this.sunLight);
