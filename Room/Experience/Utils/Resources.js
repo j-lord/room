@@ -98,8 +98,10 @@ constructor(assets) { // grab the assets from assets.js
         this.items[asset.name] = file;
         this.loaded++;
         // this.emit("progress", this.loaded/this.que);
+        // console.log("progress", this.loaded/this.que);
         if(this.loaded === this.que){
             this.emit("ready");
+            // console.log("finished loading")
         }
     }
 }

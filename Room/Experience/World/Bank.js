@@ -46,15 +46,25 @@ export default class Bank{
                         groupchild.receiveShadow = true;
                     });
                 }
+
+            if (child.name === "Grass"){
+                console.log(this.resources.items)
+                child.material = new THREE.MeshStandardMaterial({
+                    map: this.resources.items.grassTexture,
+                    color: "#ffffff",
+                });
+            
+            }
+
         // Will leave this here in case there is a time you want to 
         // put an ATM screen next to the bank or something similar
-        if (child.name === "Computer") {
-            // child.material = new THREE.MeshBasicMaterial({  // this is for the computer screen
-            child.children[1].material = new THREE.MeshBasicMaterial({  // this is for the joined computer screen
-                // we need to select the screen mesh(material)
-                        map: this.resources.items.screen, // commenting this screen play for now
-                    });
-        }
+        // if (child.name === "Computer") {
+        //     // child.material = new THREE.MeshBasicMaterial({  // this is for the computer screen
+        //     child.children[1].material = new THREE.MeshBasicMaterial({  // this is for the joined computer screen
+        //         // we need to select the screen mesh(material)
+        //                 map: this.resources.items.screen, // commenting this screen play for now
+        //             });
+        // }
 
         });
         
@@ -82,25 +92,23 @@ export default class Bank{
             // positionArray[i * 3 + 2] = (Math.random() - 0.5/2)            
             scaleArray[i] = Math.random()
         }
-        console.log("🚀 ~ file: Bank.js:81 ~ setFireFlies ~ positionArray:", positionArray)
         
         // trying to exclude the cube in the middle so no particles are going through the model
         const newPositionArray = positionArray.filter(function(x){
             return x > 1;
         })
-        console.log("🚀 ~ file: Bank.js:90 ~ newPositionArray ~ newPositionArray:", newPositionArray)
+        // console.log("🚀 ~ file: Bank.js:90 ~ newPositionArray ~ newPositionArray:", newPositionArray)
         
 
         firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
         firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
-
-        // 
+        
         this.firefliesMaterial = new THREE.ShaderMaterial({
             uniforms:
             {   
                 uTime: { value: 0 },
                 uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-                uSize: { value: 10 } // change this value once testing is finished
+                uSize: { value: 20 } // change this value once testing is finished
             },
             vertexShader:
             `
@@ -143,6 +151,9 @@ export default class Bank{
 
         gui.add(this.firefliesMaterial.uniforms.uSize, 'value').min(0).max(500).step(1).name('firefliesSize')
 
+        const object = this.firefliesGeometry2;
+        const box = new THREE.BoxHelper( object, 0xffff00 );
+        this.scene.add( box );
 
         // Points
         this.fireflies = new THREE.Points(firefliesGeometry, this.firefliesMaterial)        
