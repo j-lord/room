@@ -1,21 +1,64 @@
-// {import firefliesFragmentShader from '/Shaders/Fireflies/fragment.glsl';}
+// import BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import * as dat from 'lil-gui'
 import * as THREE from 'three';
 import Experience from "../Experience.js"
 import GSAP from "gsap"
+import Grass from './Grass.js';
 
-// import firefliesVertexShader from '/Shaders/Fireflies/vertex.glsl';
-// console.log(firefliesVertexShader)
-// import firefliesFragmentShader from './shaders/fireflies/fragment.glsl'
-
-
+import Time from '../Utils/Time';
 export default class Bank{
     constructor(){
         this.experience = new Experience();
         this.scene = this.experience.scene;
         this.resources = this.experience.resources;
         this.time = this.experience.time;
-                
+        // Grass constructor(size, count)
+        this.grass = new Grass(4, 100);
+
+
+
+        // ############# TESTING ################## //
+// Create the outer shape
+const outerShape = new THREE.Shape();
+outerShape.moveTo(-2, -2);
+outerShape.lineTo(2, -2);
+outerShape.lineTo(2, 2);
+outerShape.lineTo(-2, 2);
+outerShape.lineTo(-2, -2);
+
+// Create the inner shape
+const innerShape = new THREE.Shape();
+innerShape.moveTo(-1, -1);
+innerShape.lineTo(1, -1);
+innerShape.lineTo(1, 1);
+innerShape.lineTo(-1, 1);
+innerShape.lineTo(-1, -1);
+
+// Create the hole by subtracting the inner shape from the outer shape
+outerShape.holes.push(innerShape);
+
+// Create the geometry by extruding the shape
+const extrusionSettings = {
+  depth: 0.01, // Extrusion depth
+  bevelEnabled: false, // Disable bevel
+};
+
+const geometry = new THREE.ExtrudeBufferGeometry(outerShape, extrusionSettings);
+
+// Optionally, compute vertex normals for smooth shading
+geometry.computeVertexNormals();
+
+// Create a mesh using the geometry
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const mesh = new THREE.Mesh(geometry, material);
+mesh.rotateX(Math.PI/2);
+mesh.position.y = 1.5;
+// Add the mesh to the scene
+this.scene.add(mesh);
+
+        
+        // ############# TESTING ################## //
+        
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
         // and assigns a name to each (i.e. this is the Bank)
         // this.bank = this.resources.items.bank.scene;
@@ -32,7 +75,7 @@ export default class Bank{
         this.setFireFlies();    
         this.setAnimation();
         this.onMouseMove();
-        // this.update();
+        this.update();
     }
     
         setBank(){
@@ -47,14 +90,14 @@ export default class Bank{
                     });
                 }
 
-            if (child.name === "Grass"){
-                console.log(this.resources.items)
-                child.material = new THREE.MeshStandardMaterial({
-                    map: this.resources.items.grassTexture,
-                    color: "#ffffff",
-                });
+            // if (child.name === "Grass"){
+            //     console.log(this.resources.items)
+            //     child.material = new THREE.MeshStandardMaterial({
+            //         map: this.resources.items.grassTexture,
+            //         color: "#ff00ff",
+            //     });
             
-            }
+            // }
 
         // Will leave this here in case there is a time you want to 
         // put an ATM screen next to the bank or something similar
@@ -69,6 +112,7 @@ export default class Bank{
         });
         
         this.group.add(this.bank)
+        // this.group.add(this.grass)
     }
 
 
@@ -76,6 +120,7 @@ export default class Bank{
         const debugObject = {}
         const gui = new dat.GUI({   width: 400  })
         
+        // const firefliesGeometry = new THREE.BufferGeometry()
         const firefliesGeometry = new THREE.BufferGeometry()
         const firefliesCount = 60
         const positionArray = new Float32Array(firefliesCount * 3)
@@ -120,7 +165,8 @@ export default class Bank{
             void main()
             {
                 vec4 modelPosition = modelMatrix * vec4(position, 0.8);
-                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.2;
+                // the multiplier at the end is the speed the particles move
+                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.08;
                 vec4 viewPosition = viewMatrix * modelPosition;
                 vec4 projectionPosition = projectionMatrix * viewPosition;
             
@@ -157,7 +203,7 @@ export default class Bank{
 
         // Points
         this.fireflies = new THREE.Points(firefliesGeometry, this.firefliesMaterial)        
-        this.group.add(this.fireflies)
+        // this.group.add(this.fireflies)
         this.scene.add(this.group);
         }
 
@@ -165,7 +211,7 @@ export default class Bank{
     // still need to figure out how to make the fish move correctly
     // https://youtu.be/nfvPq__Prts?t=617
     // look at the link above for animation reference for bouncing
-    
+
     setAnimation(){
 
     console.log(this.bank.animations)
@@ -184,7 +230,10 @@ const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
     // Update materials
-    this.firefliesMaterial.uniforms.uTime.value = elapsedTime
+    this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
+    this.grass.material.uniforms.uTime.value = elapsedTime;
+
+    // this.grass.uniforms.uTime.value = elapsedTime
     window.requestAnimationFrame(tick)
 }
 
@@ -208,6 +257,7 @@ tick()
             this.lerp.target,
             this.lerp.ease
         );
+
         
         // update the fireflies material if the pixel ratio changes
         this.firefliesMaterial.uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 2)

@@ -12,7 +12,7 @@ export default class Room{
     setFloor(){
         // make the ground plane so small that you can't see it
         // will most likely bring this back later on
-        this.geometry = new THREE.PlaneGeometry( 5,5,5 );
+        this.geometry = new THREE.PlaneGeometry( 10,10,10 );
         this.material = new THREE.MeshStandardMaterial({
             color: 0x1f3742,
             // color: 0xCD5C5C,
