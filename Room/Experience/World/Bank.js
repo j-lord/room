@@ -18,45 +18,45 @@ export default class Bank{
 
 
         // ############# TESTING ################## //
-// Create the outer shape
-const outerShape = new THREE.Shape();
-outerShape.moveTo(-2, -2);
-outerShape.lineTo(2, -2);
-outerShape.lineTo(2, 2);
-outerShape.lineTo(-2, 2);
-outerShape.lineTo(-2, -2);
 
-// Create the inner shape
-const innerShape = new THREE.Shape();
-innerShape.moveTo(-1, -1);
-innerShape.lineTo(1, -1);
-innerShape.lineTo(1, 1);
-innerShape.lineTo(-1, 1);
-innerShape.lineTo(-1, -1);
+            // Create the outer shape
+            const outerShape = new THREE.Shape();
+            outerShape.moveTo(-1, -1);
+            outerShape.lineTo(1, -1);
+            outerShape.lineTo(1, 1);
+            outerShape.lineTo(-1, 1);
+            outerShape.lineTo(-1, -1);
 
-// Create the hole by subtracting the inner shape from the outer shape
-outerShape.holes.push(innerShape);
+            // Create the inner shape
+            const innerShape = new THREE.Shape();
+            innerShape.moveTo(-1/2, -1/2);
+            innerShape.lineTo(1/2, -1/2);
+            innerShape.lineTo(1/2, 1/2);
+            innerShape.lineTo(-1/2, 1/2);
+            innerShape.lineTo(-1/2, -1/2);
 
-// Create the geometry by extruding the shape
-const extrusionSettings = {
-  depth: 0.01, // Extrusion depth
-  bevelEnabled: false, // Disable bevel
-};
+            // Create the hole by subtracting the inner shape from the outer shape
+            outerShape.holes.push(innerShape);
 
-const geometry = new THREE.ExtrudeBufferGeometry(outerShape, extrusionSettings);
+            // Create the geometry by extruding the shape
+            const extrusionSettings = {
+            depth: 2, // Extrusion depth
+            bevelEnabled: false, // Disable bevel
+            };
 
-// Optionally, compute vertex normals for smooth shading
-geometry.computeVertexNormals();
+            const geometry = new THREE.ExtrudeBufferGeometry(outerShape, extrusionSettings);
 
-// Create a mesh using the geometry
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-const mesh = new THREE.Mesh(geometry, material);
-mesh.rotateX(Math.PI/2);
-mesh.position.y = 1.5;
-// Add the mesh to the scene
-this.scene.add(mesh);
+            // Optionally, compute vertex normals for smooth shading
+            geometry.computeVertexNormals();
 
-        
+            // Create a mesh using the geometry
+            const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
+            this.mesh = new THREE.Mesh(geometry, material);
+            this.mesh.rotateX(Math.PI/2);
+            this.mesh.position.y = 2.02;
+            // Add the mesh to the scene
+            this.scene.add(this.mesh);
+
         // ############# TESTING ################## //
         
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
@@ -198,12 +198,12 @@ this.scene.add(mesh);
         gui.add(this.firefliesMaterial.uniforms.uSize, 'value').min(0).max(500).step(1).name('firefliesSize')
 
         const object = this.firefliesGeometry2;
-        const box = new THREE.BoxHelper( object, 0xffff00 );
-        this.scene.add( box );
+        // const box = new THREE.BoxHelper( object, 0xffff00);
+        // this.scene.add( box );
 
         // Points
         this.fireflies = new THREE.Points(firefliesGeometry, this.firefliesMaterial)        
-        // this.group.add(this.fireflies)
+        this.group.add(this.fireflies)
         this.scene.add(this.group);
         }
 
