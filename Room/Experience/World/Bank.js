@@ -17,6 +17,9 @@ export default class Bank{
 
 
 
+
+
+
         // ############# TESTING ################## //
 
             // Create the outer shape
@@ -44,7 +47,7 @@ export default class Bank{
             bevelEnabled: false, // Disable bevel
             };
 
-            const geometry = new THREE.ExtrudeBufferGeometry(outerShape, extrusionSettings);
+            const geometry = new THREE.ExtrudeGeometry(outerShape, extrusionSettings);
 
             // Optionally, compute vertex normals for smooth shading
             geometry.computeVertexNormals();
@@ -59,6 +62,10 @@ export default class Bank{
 
         // ############# TESTING ################## //
         
+
+
+
+
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
         // and assigns a name to each (i.e. this is the Bank)
         // this.bank = this.resources.items.bank.scene;
@@ -111,7 +118,7 @@ export default class Bank{
 
         });
         
-        this.group.add(this.bank)
+        // this.group.add(this.bank)
         // this.group.add(this.grass)
     }
 
@@ -120,40 +127,58 @@ export default class Bank{
         const debugObject = {}
         const gui = new dat.GUI({   width: 400  })
         
-        // const firefliesGeometry = new THREE.BufferGeometry()
+        // Create the shape the fireflies will sit in BufferGeometry is a cube
         const firefliesGeometry = new THREE.BufferGeometry()
+        // Number of fireflies to occupy the geometry
         const firefliesCount = 60
-        const positionArray = new Float32Array(firefliesCount * 3)
+        // Create the random position array where the fireflies will be located
+        const positionArray = new Float32Array(firefliesCount * 3) // x3 because 3 dimensions
+        // Create the random scale array that will hold the fireflies size
         const scaleArray = new Float32Array(firefliesCount)
-
-        // location of all of the points
+        var totalx, totaly, totalz;
+        // Location of all of the points
         for(let i = 0; i < firefliesCount; i++)
         {
             positionArray[i * 3 + 0] = (Math.random() - 0.5) * 2.3
+            totalx += positionArray[i * 3 + 0]
             positionArray[i * 3 + 1] = (Math.random() + 0.5) * 0.5
+            totaly += positionArray[i * 3 + 0]
             positionArray[i * 3 + 2] = (Math.random() - 0.5) * 2.3            
+            totalz += positionArray[i * 3 + 0]
             // positionArray[i * 3 + 0] = (Math.random() - 0.5/2)
             // positionArray[i * 3 + 1] = (Math.random() + 0.5/2)
             // positionArray[i * 3 + 2] = (Math.random() - 0.5/2)            
             scaleArray[i] = Math.random()
         }
+        var middleX = totalx/3
+        var middleY = totaly/3
+        var middleZ = totalz/3
+
+        
+            // positionArray[1 * 3 + 0] = (Math.random() - 0.5) * 2.3
+            // positionArray[2 * 3 + 1] = (Math.random() + 0.5) * 0.5
+            // positionArray[3 * 3 + 2] = (Math.random() - 0.5) * 2.3            
+        scaleArray[1] = Math.random()
+
         
         // trying to exclude the cube in the middle so no particles are going through the model
-        const newPositionArray = positionArray.filter(function(x){
-            return x > 1;
-        })
+        // may not need this
+        // const newPositionArray = positionArray.filter(function(x){
+        //     return x > 1;
+        // })
         // console.log("🚀 ~ file: Bank.js:90 ~ newPositionArray ~ newPositionArray:", newPositionArray)
         
-
         firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
         firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
+        // firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
+        // firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
         
         this.firefliesMaterial = new THREE.ShaderMaterial({
             uniforms:
             {   
                 uTime: { value: 0 },
                 uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-                uSize: { value: 20 } // change this value once testing is finished
+                uSize: { value: 100 } // change this value once testing is finished (20)
             },
             vertexShader:
             `
@@ -190,8 +215,8 @@ export default class Bank{
             }`,
             transparent: true,
             // blends the colors of the particles with its background - rough on performances if there are a lot 
-            blending: THREE.AdditiveBlending, 
-            // allows particles to be shown on top of others without blocking whats behind 
+            // blending: THREE.AdditiveBlending, 
+            // Allows particles to be shown on top of others without blocking whats behind 
             depthWrite: false
         })
 
