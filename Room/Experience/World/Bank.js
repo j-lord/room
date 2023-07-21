@@ -135,30 +135,97 @@ export default class Bank{
         const positionArray = new Float32Array(firefliesCount * 3) // x3 because 3 dimensions
         // Create the random scale array that will hold the fireflies size
         const scaleArray = new Float32Array(firefliesCount)
-        var totalx, totaly, totalz;
+        var totalx = 0; var totaly = 0; var totalz = 0;
         // Location of all of the points
         for(let i = 0; i < firefliesCount; i++)
         {
             positionArray[i * 3 + 0] = (Math.random() - 0.5) * 2.3
+            // console.log(positionArray[i * 3 + 0])
+            // console.log(typeof(positionArray[i * 3 + 0]))
             totalx += positionArray[i * 3 + 0]
             positionArray[i * 3 + 1] = (Math.random() + 0.5) * 0.5
-            totaly += positionArray[i * 3 + 0]
+            totaly += positionArray[i * 3 + 1]
             positionArray[i * 3 + 2] = (Math.random() - 0.5) * 2.3            
-            totalz += positionArray[i * 3 + 0]
+            totalz += positionArray[i * 3 + 2]
+            
+            // totalz += positionArray[i * 3 + 0]
             // positionArray[i * 3 + 0] = (Math.random() - 0.5/2)
             // positionArray[i * 3 + 1] = (Math.random() + 0.5/2)
             // positionArray[i * 3 + 2] = (Math.random() - 0.5/2)            
             scaleArray[i] = Math.random()
         }
-        var middleX = totalx/3
-        var middleY = totaly/3
-        var middleZ = totalz/3
-
-        
+        var middleX = 1/3
+        var middleY = 0
+        var middleZ = 1/3
+        const testArray = new Float32Array(3)
+        testArray[0]=middleX
+        testArray[1]=middleY
+        testArray[2]=middleZ
+        console.log("middle x is ", middleX)
+        console.log("middle y is ", middleY)
+        console.log("middle z is ", middleZ)
+        console.log(testArray)
             // positionArray[1 * 3 + 0] = (Math.random() - 0.5) * 2.3
             // positionArray[2 * 3 + 1] = (Math.random() + 0.5) * 0.5
-            // positionArray[3 * 3 + 2] = (Math.random() - 0.5) * 2.3            
-        scaleArray[1] = Math.random()
+            // positionArray[3 * 3 + 2] = (Math.random() - 0.5) * 2.3
+        const testScaleArray = new Float32Array(3)         
+        testScaleArray[0] = (2,2,2)
+        console.log("🚀 ~ file: Bank.js:173 ~ setFireFlies ~ testScaleArray:", testScaleArray)
+        
+        // looking for a random red point in the center 
+        const testGeometry = new THREE.BufferGeometry()
+        testGeometry.setAttribute('position', new THREE.BufferAttribute(testArray, 3))
+        testGeometry.setAttribute('aScale', new THREE.BufferAttribute(testScaleArray, 1))
+        this.testMaterial = new THREE.ShaderMaterial({
+            uniforms:
+            {   
+                uTime: { value: 0 },
+                uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+                uSize: { value: 100 } // change this value once testing is finished (20)
+            },
+            vertexShader:
+            `
+            uniform float uTime;
+            uniform float uPixelRatio;
+            uniform float uSize;
+            attribute float aScale;
+
+            void main()
+            {
+                vec4 modelPosition = modelMatrix * vec4(position, 0.8);
+                // the multiplier at the end is the speed the particles move
+                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.08;
+                vec4 viewPosition = viewMatrix * modelPosition;
+                vec4 projectionPosition = projectionMatrix * viewPosition;
+            
+                gl_Position = projectionPosition;
+                gl_PointSize = uSize * aScale * uPixelRatio;
+            
+            }`,
+            fragmentShader:
+            `
+            void main()
+            {
+                // get the distance from the center of the particle to the outside
+                // then sent to alpha so its bring in the center and diffuses quickly
+
+                float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
+                float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
+                
+                // color of the fireflies (vec4 (R,G,B,A))
+                // gl_FragColor = vec4(0.9, 0.6, 1, strength); // purple
+                // gl_FragColor = vec4(0.2, 0.9, 0.6, strength); // green
+                gl_FragColor = vec4(1, 0, 0, strength); // red
+            }`,
+            transparent: true,
+            // blends the colors of the particles with its background - rough on performances if there are a lot 
+            // blending: THREE.AdditiveBlending, 
+            // Allows particles to be shown on top of others without blocking whats behind 
+            depthWrite: false
+        })
+        this.testPoint = new THREE.Points(testGeometry, this.testMaterial)        
+        this.group.add(this.testPoint)
+        this.scene.add(this.group);
 
         
         // trying to exclude the cube in the middle so no particles are going through the model
@@ -222,14 +289,10 @@ export default class Bank{
 
         gui.add(this.firefliesMaterial.uniforms.uSize, 'value').min(0).max(500).step(1).name('firefliesSize')
 
-        const object = this.firefliesGeometry2;
-        // const box = new THREE.BoxHelper( object, 0xffff00);
-        // this.scene.add( box );
-
         // Points
         this.fireflies = new THREE.Points(firefliesGeometry, this.firefliesMaterial)        
-        this.group.add(this.fireflies)
-        this.scene.add(this.group);
+        // this.group.add(this.fireflies)
+        // this.scene.add(this.group);
         }
 
     // this is for the fish tank animation
