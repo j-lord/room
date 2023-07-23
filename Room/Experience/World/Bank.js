@@ -15,57 +15,6 @@ export default class Bank{
         // Grass constructor(size, count)
         this.grass = new Grass(4, 100);
 
-
-
-
-
-
-        // ############# TESTING ################## //
-
-            // Create the outer shape
-            const outerShape = new THREE.Shape();
-            outerShape.moveTo(-1, -1);
-            outerShape.lineTo(1, -1);
-            outerShape.lineTo(1, 1);
-            outerShape.lineTo(-1, 1);
-            outerShape.lineTo(-1, -1);
-
-            // Create the inner shape
-            const innerShape = new THREE.Shape();
-            innerShape.moveTo(-1/2, -1/2);
-            innerShape.lineTo(1/2, -1/2);
-            innerShape.lineTo(1/2, 1/2);
-            innerShape.lineTo(-1/2, 1/2);
-            innerShape.lineTo(-1/2, -1/2);
-
-            // Create the hole by subtracting the inner shape from the outer shape
-            outerShape.holes.push(innerShape);
-
-            // Create the geometry by extruding the shape
-            const extrusionSettings = {
-            depth: 2, // Extrusion depth
-            bevelEnabled: false, // Disable bevel
-            };
-
-            const geometry = new THREE.ExtrudeGeometry(outerShape, extrusionSettings);
-
-            // Optionally, compute vertex normals for smooth shading
-            geometry.computeVertexNormals();
-
-            // Create a mesh using the geometry
-            const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true });
-            this.mesh = new THREE.Mesh(geometry, material);
-            this.mesh.rotateX(Math.PI/2);
-            this.mesh.position.y = 2.02;
-            // Add the mesh to the scene
-            this.scene.add(this.mesh);
-
-        // ############# TESTING ################## //
-        
-
-
-
-
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
         // and assigns a name to each (i.e. this is the Bank)
         // this.bank = this.resources.items.bank.scene;
@@ -79,7 +28,8 @@ export default class Bank{
 
 
         this.setBank();
-        this.setFireFlies();    
+        this.setFireFlies();
+        // this.setTestPoint();
         this.setAnimation();
         this.onMouseMove();
         this.update();
@@ -118,128 +68,31 @@ export default class Bank{
 
         });
         
-        // this.group.add(this.bank)
+        this.group.add(this.bank)
         // this.group.add(this.grass)
     }
-
 
     setFireFlies(){
         const debugObject = {}
         const gui = new dat.GUI({   width: 400  })
-        
+
         // Create the shape the fireflies will sit in BufferGeometry is a cube
         const firefliesGeometry = new THREE.BufferGeometry()
+        
         // Number of fireflies to occupy the geometry
-        const firefliesCount = 60
+        const firefliesCount = 300
+        // the max/min (x,z) coordinates where the particles will exist outside of
+        const exclusionRad = 0.4 // radius of point exclusion
+        const particleHeight = 0.2 // y-axis of particles - > 0 so particles stay above ground if animated 
+        const spreadMultiplier = 0.5 // spread distance of particles
+        const length = 1.3 // length and depth of particles
+
         // Create the random position array where the fireflies will be located
-        const positionArray = new Float32Array(firefliesCount * 3) // x3 because 3 dimensions
+        const positionArray = new Float32Array(firefliesCount * 3) // * 3 because 3 dimensions
         // Create the random scale array that will hold the fireflies size
         const scaleArray = new Float32Array(firefliesCount)
-        var totalx = 0; var totaly = 0; var totalz = 0;
         // Location of all of the points
-        for(let i = 0; i < firefliesCount; i++)
-        {
-            positionArray[i * 3 + 0] = (Math.random() - 0.5) * 2.3
-            // console.log(positionArray[i * 3 + 0])
-            // console.log(typeof(positionArray[i * 3 + 0]))
-            totalx += positionArray[i * 3 + 0]
-            positionArray[i * 3 + 1] = (Math.random() + 0.5) * 0.5
-            totaly += positionArray[i * 3 + 1]
-            positionArray[i * 3 + 2] = (Math.random() - 0.5) * 2.3            
-            totalz += positionArray[i * 3 + 2]
-            
-            // totalz += positionArray[i * 3 + 0]
-            // positionArray[i * 3 + 0] = (Math.random() - 0.5/2)
-            // positionArray[i * 3 + 1] = (Math.random() + 0.5/2)
-            // positionArray[i * 3 + 2] = (Math.random() - 0.5/2)            
-            scaleArray[i] = Math.random()
-        }
-        var middleX = 1/3
-        var middleY = 0
-        var middleZ = 1/3
-        const testArray = new Float32Array(3)
-        testArray[0]=middleX
-        testArray[1]=middleY
-        testArray[2]=middleZ
-        console.log("middle x is ", middleX)
-        console.log("middle y is ", middleY)
-        console.log("middle z is ", middleZ)
-        console.log(testArray)
-            // positionArray[1 * 3 + 0] = (Math.random() - 0.5) * 2.3
-            // positionArray[2 * 3 + 1] = (Math.random() + 0.5) * 0.5
-            // positionArray[3 * 3 + 2] = (Math.random() - 0.5) * 2.3
-        const testScaleArray = new Float32Array(3)         
-        testScaleArray[0] = (2,2,2)
-        console.log("🚀 ~ file: Bank.js:173 ~ setFireFlies ~ testScaleArray:", testScaleArray)
-        
-        // looking for a random red point in the center 
-        const testGeometry = new THREE.BufferGeometry()
-        testGeometry.setAttribute('position', new THREE.BufferAttribute(testArray, 3))
-        testGeometry.setAttribute('aScale', new THREE.BufferAttribute(testScaleArray, 1))
-        this.testMaterial = new THREE.ShaderMaterial({
-            uniforms:
-            {   
-                uTime: { value: 0 },
-                uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-                uSize: { value: 100 } // change this value once testing is finished (20)
-            },
-            vertexShader:
-            `
-            uniform float uTime;
-            uniform float uPixelRatio;
-            uniform float uSize;
-            attribute float aScale;
 
-            void main()
-            {
-                vec4 modelPosition = modelMatrix * vec4(position, 0.8);
-                // the multiplier at the end is the speed the particles move
-                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.08;
-                vec4 viewPosition = viewMatrix * modelPosition;
-                vec4 projectionPosition = projectionMatrix * viewPosition;
-            
-                gl_Position = projectionPosition;
-                gl_PointSize = uSize * aScale * uPixelRatio;
-            
-            }`,
-            fragmentShader:
-            `
-            void main()
-            {
-                // get the distance from the center of the particle to the outside
-                // then sent to alpha so its bring in the center and diffuses quickly
-
-                float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
-                float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
-                
-                // color of the fireflies (vec4 (R,G,B,A))
-                // gl_FragColor = vec4(0.9, 0.6, 1, strength); // purple
-                // gl_FragColor = vec4(0.2, 0.9, 0.6, strength); // green
-                gl_FragColor = vec4(1, 0, 0, strength); // red
-            }`,
-            transparent: true,
-            // blends the colors of the particles with its background - rough on performances if there are a lot 
-            // blending: THREE.AdditiveBlending, 
-            // Allows particles to be shown on top of others without blocking whats behind 
-            depthWrite: false
-        })
-        this.testPoint = new THREE.Points(testGeometry, this.testMaterial)        
-        this.group.add(this.testPoint)
-        this.scene.add(this.group);
-
-        
-        // trying to exclude the cube in the middle so no particles are going through the model
-        // may not need this
-        // const newPositionArray = positionArray.filter(function(x){
-        //     return x > 1;
-        // })
-        // console.log("🚀 ~ file: Bank.js:90 ~ newPositionArray ~ newPositionArray:", newPositionArray)
-        
-        firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
-        firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
-        // firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
-        // firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
-        
         this.firefliesMaterial = new THREE.ShaderMaterial({
             uniforms:
             {   
@@ -271,14 +124,14 @@ export default class Bank{
             void main()
             {
                 // get the distance from the center of the particle to the outside
-                // then sent to alpha so its bring in the center and diffuses quickly
-
+                // then send to alpha so the particle is bright in the center and diffuses quickly
                 float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
                 float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
                 
                 // color of the fireflies (vec4 (R,G,B,A))
                 // gl_FragColor = vec4(0.9, 0.6, 1, strength); // purple
                 gl_FragColor = vec4(0.2, 0.9, 0.6, strength); // green
+                // gl_FragColor = vec4(1, 0, 0, strength); // red
             }`,
             transparent: true,
             // blends the colors of the particles with its background - rough on performances if there are a lot 
@@ -287,18 +140,119 @@ export default class Bank{
             depthWrite: false
         })
 
+
+
+        for(let i = 0; i < firefliesCount/3; i++)
+        {
+            // // Random number between +exclusionRadius (inclusive) and 1 (exclusive)
+            // const randomNumberGreaterRadius = Math.random() * (exclusionRad) + exclusionRad;
+            // // Random number between -1 (exclusive) and -exclusionRadius (inclusive)
+            // const randomNumberLessRadius = Math.random() * -(exclusionRad) - exclusionRad;
+            positionArray[i * 3 + 0] = (Math.random() * (exclusionRad) + exclusionRad);
+            positionArray[i * 3 + 1] = (Math.random() + particleHeight) * spreadMultiplier
+            positionArray[i * 3 + 2] = (Math.random() - spreadMultiplier) * length
+            scaleArray[i] = Math.random()
+        }
+        for(let i = firefliesCount/3; i < (firefliesCount/3)*2 ; i++){
+            // positionArray[i * 3 + 0] = (Math.random() + 0.5)// * 2.3
+            positionArray[i * 3 + 0] = Math.random() * (-exclusionRad) - exclusionRad;
+            positionArray[i * 3 + 1] = (Math.random() + particleHeight) * spreadMultiplier
+            positionArray[i * 3 + 2] = (Math.random() - spreadMultiplier) * length
+            scaleArray[i] = Math.random()
+            }
+        for(let i = (firefliesCount/3)*2; i < firefliesCount ; i++){
+            positionArray[i * 3 + 0] = (Math.random() - spreadMultiplier) * length
+            positionArray[i * 3 + 1] = (Math.random() + particleHeight) * spreadMultiplier
+            positionArray[i * 3 + 2] = Math.random() * (exclusionRad) + exclusionRad;
+            scaleArray[i] = Math.random()
+            }
+
+        
+        firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
+        firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
         gui.add(this.firefliesMaterial.uniforms.uSize, 'value').min(0).max(500).step(1).name('firefliesSize')
 
+        // if debugging the size
+        this.setTestPoint();
         // Points
         this.fireflies = new THREE.Points(firefliesGeometry, this.firefliesMaterial)        
-        // this.group.add(this.fireflies)
-        // this.scene.add(this.group);
+        this.group.add(this.fireflies)
+        this.scene.add(this.group);
         }
 
-    // this is for the fish tank animation
+
+    setTestPoint(){
+        const testArray = new Float32Array(3)
+        testArray[0]=-0.5
+        testArray[1]=0.004
+        testArray[2]=0.5
+        const testScaleArray = new Float32Array(3)         
+        testScaleArray[0] = 2
+
+        // create random red point
+        const testGeometry = new THREE.BufferGeometry()
+
+        this.testMaterial = new THREE.ShaderMaterial({
+            uniforms:
+            {   
+                uTime: { value: 0 },
+                uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+                uSize: { value: 100 } // change this value once testing is finished (20)
+            },
+            vertexShader:
+            `
+            uniform float uTime;
+            uniform float uPixelRatio;
+            uniform float uSize;
+            attribute float aScale;
+
+            void main()
+            {
+                vec4 modelPosition = modelMatrix * vec4(position, 0.8);
+                // the multiplier at the end is the speed the particles move
+                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.08;
+                vec4 viewPosition = viewMatrix * modelPosition;
+                vec4 projectionPosition = projectionMatrix * viewPosition;
+            
+                gl_Position = projectionPosition;
+                gl_PointSize = uSize * aScale * uPixelRatio;
+            
+            }`,
+            fragmentShader:
+            `
+            void main()
+            {
+                // get the distance from the center of the particle to the outside
+                // then sent to alpha so the particle is bight in the center and diffuses quickly
+                float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
+                float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
+                
+                // color of the fireflies (vec4 (R,G,B,A))
+                // gl_FragColor = vec4(0.9, 0.6, 1, strength); // purple
+                // gl_FragColor = vec4(0.2, 0.9, 0.6, strength); // green
+                gl_FragColor = vec4(1, 0, 0, strength); // red
+            }`,
+            transparent: true,
+            // blends the colors of the particles with its background - rough on performances if there are a lot 
+            // blending: THREE.AdditiveBlending, 
+            // Allows particles to be shown on top of others without blocking whats behind 
+            depthWrite: false
+        })
+        testGeometry.setAttribute('position', new THREE.BufferAttribute(testArray, 3))
+        testGeometry.setAttribute('aScale', new THREE.BufferAttribute(testScaleArray, 1))
+
+        this.testPoint = new THREE.Points(testGeometry, this.testMaterial)
+        this.group.add(this.testPoint)
+        this.scene.add(this.group);
+
+    
+    }
+
+        // this is for the fish tank animation
     // still need to figure out how to make the fish move correctly
     // https://youtu.be/nfvPq__Prts?t=617
     // look at the link above for animation reference for bouncing
+
 
     setAnimation(){
 
