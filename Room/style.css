@@ -546,7 +546,7 @@ svg{
   /* background-image: linear-gradient(rgb(190, 166, 216) 30%,rgb(86, 93, 157),rgb(31, 16, 66)); */
   /* background-image: linear-gradient(rgb(26, 76, 54) 30%,rgb(10, 70, 34),rgb(41, 139, 143)); */
   /* background-image: linear-gradient(45deg, #f3ec78, #af4261); */
-  background-image: linear-gradient(#ffffff, #667563);
+  background-image: linear-gradient(#ffffff 40%, #0000004b);
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;

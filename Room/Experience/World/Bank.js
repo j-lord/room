@@ -13,7 +13,7 @@ export default class Bank{
         this.resources = this.experience.resources;
         this.time = this.experience.time;
         // Grass constructor(size, count)
-        this.grass = new Grass(4, 100);
+        // this.grass = new Grass(5, 30);
 
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
         // and assigns a name to each (i.e. this is the Bank)
@@ -29,13 +29,14 @@ export default class Bank{
 
         this.setBank();
         this.setFireFlies();
+        this.setGrass();
         // this.setTestPoint();
         this.setAnimation();
         this.onMouseMove();
         this.update();
     }
     
-        setBank(){
+    setBank(){
             // This ensures that everything in the screen receives a shadow
             this.bank.children.forEach(child => {
                 child.castShadow = true;
@@ -73,14 +74,14 @@ export default class Bank{
     }
 
     setFireFlies(){
-        const debugObject = {}
-        const gui = new dat.GUI({   width: 400  })
+        // const debugObject = {}
+        // const gui = new dat.GUI({   width: 400  })
 
         // Create the shape the fireflies will sit in BufferGeometry is a cube
         const firefliesGeometry = new THREE.BufferGeometry()
         
         // Number of fireflies to occupy the geometry
-        const firefliesCount = 300
+        const firefliesCount = 60 // this must be divisible by 3 as the for loops are broken into thirds (1/3)
         // the max/min (x,z) coordinates where the particles will exist outside of
         const exclusionRad = 0.4 // radius of point exclusion
         const particleHeight = 0.2 // y-axis of particles - > 0 so particles stay above ground if animated 
@@ -98,7 +99,7 @@ export default class Bank{
             {   
                 uTime: { value: 0 },
                 uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
-                uSize: { value: 100 } // change this value once testing is finished (20)
+                uSize: { value: 30 } // change this value once testing is finished
             },
             vertexShader:
             `
@@ -111,7 +112,7 @@ export default class Bank{
             {
                 vec4 modelPosition = modelMatrix * vec4(position, 0.8);
                 // the multiplier at the end is the speed the particles move
-                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.08;
+                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.06;
                 vec4 viewPosition = viewMatrix * modelPosition;
                 vec4 projectionPosition = projectionMatrix * viewPosition;
             
@@ -124,8 +125,8 @@ export default class Bank{
             void main()
             {
                 // get the distance from the center of the particle to the outside
-                // then send to alpha so the particle is bright in the center and diffuses quickly
                 float distanceToCenter = distance(gl_PointCoord, vec2(0.5));
+                // then the distance to the strength so the particle is bright in the center and diffuses quickly
                 float strength = (0.05 / distanceToCenter) - 0.08 * 2.0;
                 
                 // color of the fireflies (vec4 (R,G,B,A))
@@ -139,9 +140,7 @@ export default class Bank{
             // Allows particles to be shown on top of others without blocking whats behind 
             depthWrite: false
         })
-
-
-
+        // set position of the first 1/3 particles
         for(let i = 0; i < firefliesCount/3; i++)
         {
             // // Random number between +exclusionRadius (inclusive) and 1 (exclusive)
@@ -153,6 +152,7 @@ export default class Bank{
             positionArray[i * 3 + 2] = (Math.random() - spreadMultiplier) * length
             scaleArray[i] = Math.random()
         }
+        // set position of the second 2/3 particles
         for(let i = firefliesCount/3; i < (firefliesCount/3)*2 ; i++){
             // positionArray[i * 3 + 0] = (Math.random() + 0.5)// * 2.3
             positionArray[i * 3 + 0] = Math.random() * (-exclusionRad) - exclusionRad;
@@ -160,26 +160,30 @@ export default class Bank{
             positionArray[i * 3 + 2] = (Math.random() - spreadMultiplier) * length
             scaleArray[i] = Math.random()
             }
+        // set position of the third 3/3 particles - no need for a 4th as we don't care about particles behind the model
         for(let i = (firefliesCount/3)*2; i < firefliesCount ; i++){
             positionArray[i * 3 + 0] = (Math.random() - spreadMultiplier) * length
             positionArray[i * 3 + 1] = (Math.random() + particleHeight) * spreadMultiplier
             positionArray[i * 3 + 2] = Math.random() * (exclusionRad) + exclusionRad;
             scaleArray[i] = Math.random()
             }
-
         
         firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
         firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
-        gui.add(this.firefliesMaterial.uniforms.uSize, 'value').min(0).max(500).step(1).name('firefliesSize')
+        // gui.add(this.firefliesMaterial.uniforms.uSize, 'value').min(0).max(500).step(1).name('firefliesSize')
 
-        // if debugging the size
-        this.setTestPoint();
+        // if debugging
+        // this.setTestPoint();
+
         // Points
         this.fireflies = new THREE.Points(firefliesGeometry, this.firefliesMaterial)        
         this.group.add(this.fireflies)
         this.scene.add(this.group);
-        }
+    }
 
+    setGrass(){
+
+    }
 
     setTestPoint(){
         const testArray = new Float32Array(3)
@@ -273,7 +277,7 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
     // Update materials
     this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
-    this.grass.material.uniforms.uTime.value = elapsedTime;
+    // this.grass.material.uniforms.uTime.value = elapsedTime;
 
     // this.grass.uniforms.uTime.value = elapsedTime
     window.requestAnimationFrame(tick)
@@ -287,8 +291,8 @@ tick()
     onMouseMove(){
         window.addEventListener("mousemove", (e) => {
             this.rotation = ((e.clientX - window.innerWidth / 2) * 1) / window.innerWidth;
-            this.lerp.target = this.rotation * 0.1;
-            // this.lerp.target = this.rotation * 6;
+            // this.lerp.target = this.rotation * 0.1;
+            this.lerp.target = this.rotation * 6;
             
         });
     }

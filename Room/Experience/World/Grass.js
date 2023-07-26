@@ -2,8 +2,8 @@ import * as THREE from 'three'
 
 // const BLADE_WIDTH = 0.006
 // const BLADE_HEIGHT = 0.008
-const BLADE_WIDTH = 0.2
-const BLADE_HEIGHT = 0.8
+const BLADE_WIDTH = 0.02
+const BLADE_HEIGHT = 0.08
 const BLADE_HEIGHT_VARIATION = 0.2
 const BLADE_VERTEX_COUNT = 5
 const BLADE_TIP_OFFSET = 0.002
