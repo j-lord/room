@@ -42,10 +42,10 @@ export default class Camera{
                 //     40);
 
                 this.orthographicCamera.position.x = 1.5;
-                this.orthographicCamera.position.y = 0;
+                this.orthographicCamera.position.y = 0.5;
                 this.orthographicCamera.position.z = 1.5; 
 
-                this.orthographicCamera.zoom = 0.6;
+                this.orthographicCamera.zoom = 0.8;
                 this.orthographicCamera.rotation.order = 'YXZ';
                 this.orthographicCamera.rotation.y = Math.PI / 4;
                 this.orthographicCamera.rotation.x = Math.atan( - 1 / Math.sqrt( 4.5 ) );
