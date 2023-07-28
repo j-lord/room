@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import Experience from "../Experience.js"
 import GSAP from "gsap"
 import Grass from './Grass.js';
+import Grass2 from './Grass2.js';
 
 import Time from '../Utils/Time';
 export default class Bank{
@@ -14,6 +15,7 @@ export default class Bank{
         this.time = this.experience.time;
         // Grass constructor(size, count)
         // this.grass = new Grass(5, 30);
+        this.grass = new Grass2();
 
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
         // and assigns a name to each (i.e. this is the Bank)
@@ -68,14 +70,18 @@ export default class Bank{
         // }
 
         });
-        
-        this.group.add(this.bank)
-        // this.group.add(this.grass)
+        //////////////  TESTING /////////////////////
+        const gridHelper = new THREE.GridHelper(5,5);
+        this.scene.add(gridHelper)
+        //////////////  TESTING /////////////////////
+
+        // this.group.add(this.bank)
+        this.group.add(this.grass)
     }
 
     setFireFlies(){
         // const debugObject = {}
-        // const gui = new dat.GUI({   width: 400  })
+        const gui = new dat.GUI({   width: 400  })
 
         // Create the shape the fireflies will sit in BufferGeometry is a cube
         const firefliesGeometry = new THREE.BufferGeometry()
@@ -170,7 +176,7 @@ export default class Bank{
         
         firefliesGeometry.setAttribute('position', new THREE.BufferAttribute(positionArray, 3))
         firefliesGeometry.setAttribute('aScale', new THREE.BufferAttribute(scaleArray, 1))
-        // gui.add(this.firefliesMaterial.uniforms.uSize, 'value').min(0).max(500).step(1).name('firefliesSize')
+        gui.add(this.firefliesMaterial.uniforms.uSize, 'value').min(0).max(500).step(1).name('firefliesSize')
 
         // if debugging
         // this.setTestPoint();
