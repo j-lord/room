@@ -181,6 +181,7 @@ export default class Bank{
         this.scene.add(this.group);
     }
 
+    // next step is to apply realistic grass to the green lawn around the bank
     setGrass(){
 
     }
