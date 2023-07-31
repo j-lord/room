@@ -75,7 +75,7 @@ export default class Bank{
         this.scene.add(gridHelper)
         //////////////  TESTING /////////////////////
 
-        // this.group.add(this.bank)
+        this.group.add(this.bank)
         this.group.add(this.grass)
     }
 
@@ -101,6 +101,7 @@ export default class Bank{
         // Location of all of the points
 
         this.firefliesMaterial = new THREE.ShaderMaterial({
+            blending: THREE.AdditiveBlending,
             uniforms:
             {   
                 uTime: { value: 0 },
@@ -113,21 +114,32 @@ export default class Bank{
             uniform float uPixelRatio;
             uniform float uSize;
             attribute float aScale;
+            varying vec3 vColor;
 
+            
             void main()
             {
                 vec4 modelPosition = modelMatrix * vec4(position, 0.8);
                 // the multiplier at the end is the speed the particles move
-                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.06;
+                modelPosition.y += sin(uTime + modelPosition.x * 100.0) * aScale * 0.06;
                 vec4 viewPosition = viewMatrix * modelPosition;
                 vec4 projectionPosition = projectionMatrix * viewPosition;
-            
+
+                // Twinkle effect based on time and modelPosition
+                //                sin(time * speed of blink * x-position) * time dark + time light
+                // If time light >= time dark the the particles won't go all the way dark but will fade
+                float twinkling;
+                twinkling += -sin(-cos(uTime * 1.5 * modelPosition.x)) * aScale + aScale;
+                vColor = vec3(twinkling);
+
                 gl_Position = projectionPosition;
                 gl_PointSize = uSize * aScale * uPixelRatio;
             
             }`,
             fragmentShader:
             `
+            varying vec3 vColor;
+            
             void main()
             {
                 // get the distance from the center of the particle to the outside
@@ -137,7 +149,7 @@ export default class Bank{
                 
                 // color of the fireflies (vec4 (R,G,B,A))
                 // gl_FragColor = vec4(0.9, 0.6, 1, strength); // purple
-                gl_FragColor = vec4(0.2, 0.9, 0.6, strength); // green
+                gl_FragColor = vec4(vColor, strength); // green
                 // gl_FragColor = vec4(1, 0, 0, strength); // red
             }`,
             transparent: true,
@@ -284,6 +296,8 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
     // Update materials
     this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
+    // this.firefliesMaterial.uniforms.uSize.value = elapsedTime;
+    // console.log(this.firefliesMaterial.uniforms.uSize)
     // this.grass.material.uniforms.uTime.value = elapsedTime;
 
     // this.grass.uniforms.uTime.value = elapsedTime
@@ -298,8 +312,8 @@ tick()
     onMouseMove(){
         window.addEventListener("mousemove", (e) => {
             this.rotation = ((e.clientX - window.innerWidth / 2) * 1) / window.innerWidth;
-            // this.lerp.target = this.rotation * 0.1;
-            this.lerp.target = this.rotation * 6;
+            this.lerp.target = this.rotation * 0.06;
+            // this.lerp.target = this.rotation * 4;
             
         });
     }
