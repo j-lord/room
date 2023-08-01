@@ -13,9 +13,9 @@ export default class Bank{
         this.scene = this.experience.scene;
         this.resources = this.experience.resources;
         this.time = this.experience.time;
-        // Grass constructor(size, count)
+        // Grass2 constructor(size, count)
         // this.grass = new Grass(5, 30);
-        this.grass = new Grass2();
+        // this.grass = new Grass2();
 
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
         // and assigns a name to each (i.e. this is the Bank)
@@ -76,7 +76,7 @@ export default class Bank{
         //////////////  TESTING /////////////////////
 
         this.group.add(this.bank)
-        this.group.add(this.grass)
+        // this.group.add(this.grass)
     }
 
     setFireFlies(){
@@ -87,7 +87,7 @@ export default class Bank{
         const firefliesGeometry = new THREE.BufferGeometry()
         
         // Number of fireflies to occupy the geometry
-        const firefliesCount = 60 // this must be divisible by 3 as the for loops are broken into thirds (1/3)
+        const firefliesCount = 30 // this must be divisible by 3 as the for loops are broken into thirds (1/3)
         // the max/min (x,z) coordinates where the particles will exist outside of
         const exclusionRad = 0.4 // radius of point exclusion
         const particleHeight = 0.2 // y-axis of particles - > 0 so particles stay above ground if animated 
@@ -129,7 +129,7 @@ export default class Bank{
                 //                sin(time * speed of blink * x-position) * time dark + time light
                 // If time light >= time dark the the particles won't go all the way dark but will fade
                 float twinkling;
-                twinkling += -sin(-cos(uTime * 1.5 * modelPosition.x)) * aScale + aScale;
+                twinkling = -sin(-cos(uTime * 1.5 * modelPosition.x)) * 1.5 + 1.3;
                 vColor = vec3(twinkling);
 
                 gl_Position = projectionPosition;
@@ -139,7 +139,7 @@ export default class Bank{
             fragmentShader:
             `
             varying vec3 vColor;
-            
+
             void main()
             {
                 // get the distance from the center of the particle to the outside
@@ -149,6 +149,7 @@ export default class Bank{
                 
                 // color of the fireflies (vec4 (R,G,B,A))
                 // gl_FragColor = vec4(0.9, 0.6, 1, strength); // purple
+                vec3 green = vec3(0.0, 0.9, 0.0);
                 gl_FragColor = vec4(vColor, strength); // green
                 // gl_FragColor = vec4(1, 0, 0, strength); // red
             }`,
