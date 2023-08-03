@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import Experience from "../Experience.js"
 import GSAP from "gsap"
 import Grass from './Grass.js';
-import Grass2 from './Grass2.js';
+// import Grass2 from './Grass2.js';
 
 import Time from '../Utils/Time';
 export default class Bank{
