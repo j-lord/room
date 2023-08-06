@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import Experience from "../Experience.js"
 import GSAP from "gsap"
 import Grass from './Grass.js';
-// import Grass2 from './Grass2.js';
+import Grass2 from './Grass2.js';
 
 import Time from '../Utils/Time';
 export default class Bank{
@@ -129,7 +129,7 @@ export default class Bank{
                 //                sin(time * speed of blink * x-position) * time dark + time light
                 // If time light >= time dark the the particles won't go all the way dark but will fade
                 float twinkling;
-                twinkling = -sin(-cos(uTime * 1.5 * modelPosition.x)) * 1.5 + 1.3;
+                twinkling = -sin(-cos(uTime * 1.5 * modelPosition.x)) * 0.9 + 0.7;
                 vColor = vec3(twinkling);
 
                 gl_Position = projectionPosition;
@@ -294,9 +294,18 @@ const clock = new THREE.Clock()
 
 const tick = () =>
 {
-    const elapsedTime = clock.getElapsedTime()
+    var elapsedTime = clock.getElapsedTime()
     // Update materials
-    this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
+    // this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
+    this.firefliesMaterial.uniforms.uTime.value = clock.getElapsedTime();
+    if (elapsedTime > 5){
+        // elapsedTime = 1
+        // let elapsedTime = clock.getElapsedTime() - 5
+    var elapsedTime = elapsedTime - 5;
+    }
+    // console.log("uTime.value:", this.firefliesMaterial.uniforms.uTime.value)
+    // console.log(this.firefliesMaterial.uniforms.uTime.value)
+    // console.log("elapsedTime:");console.log(elapsedTime);
     // this.firefliesMaterial.uniforms.uSize.value = elapsedTime;
     // console.log(this.firefliesMaterial.uniforms.uSize)
     // this.grass.material.uniforms.uTime.value = elapsedTime;
