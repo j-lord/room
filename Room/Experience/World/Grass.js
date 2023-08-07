@@ -107,32 +107,34 @@ class Grass extends THREE.Mesh {
             },
             side: THREE.DoubleSide,
             vertexShader:`
-            uniform float uTime;
-            varying vec3 vPosition;
             varying vec2 vUv;
-            varying vec3 vNormal;
+  uniform float time;
+  
+	void main() {
 
-            float wave(float waveSize, float tipDistance, float centerDistance) {
-                // Tip is the fifth vertex drawn per blade
-                bool isTip = (gl_VertexID + 1) % 5 == 0;
+    vUv = uv;
+    
+    // VERTEX POSITION
+    
+    vec4 mvPosition = vec4( position, 1.0 );
+    #ifdef USE_INSTANCING
+    	mvPosition = instanceMatrix * mvPosition;
+    #endif
+    
+    // DISPLACEMENT
+    
+    // here the displacement is made stronger on the blades tips.
+    float dispPower = 1.0 - cos( uv.y * 2.1 / 2.0 );
+    
+    float displacement = sin( mvPosition.z + uTime * 10.0 ) * ( 0.1 * dispPower );
+    mvPosition.z += displacement;
+    
+    //
+    
+    vec4 modelViewPosition = modelViewMatrix * mvPosition;
+    gl_Position = projectionMatrix * modelViewPosition;
 
-                float waveDistance = isTip ? tipDistance : centerDistance;
-                return sin((uTime / 5.0) + waveSize) * waveDistance;
-                // return sin((uTime / 500.0) + waveSize) * uTime;
-            }
-
-            void main() {
-                vPosition = position;
-                vUv = uv;
-                vNormal = normalize( normalMatrix * normal );
-
-                if ( vPosition.y < 0.0 ) {
-                vPosition.y = 0.0;
-                } else {
-                vPosition.x += wave(uv.x * 10.0, 0.3, 0.1);      
-                }
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(vPosition, 1.0);
-            }
+	}
             `,
             fragmentShader:`
             uniform sampler2D uCloud;

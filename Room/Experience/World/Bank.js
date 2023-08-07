@@ -15,7 +15,7 @@ export default class Bank{
         this.time = this.experience.time;
         // Grass2 constructor(size, count)
         // this.grass = new Grass(5, 30);
-        // this.grass = new Grass2();
+        this.grass = new Grass();
 
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
         // and assigns a name to each (i.e. this is the Bank)
@@ -303,9 +303,9 @@ const tick = () =>
         // let elapsedTime = clock.getElapsedTime() - 5
     var elapsedTime = elapsedTime - 5;
     }
-    // console.log("uTime.value:", this.firefliesMaterial.uniforms.uTime.value)
-    // console.log(this.firefliesMaterial.uniforms.uTime.value)
-    // console.log("elapsedTime:");console.log(elapsedTime);
+    // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
+    // console.log("elapsedTime: ", elapsedTime)
+
     // this.firefliesMaterial.uniforms.uSize.value = elapsedTime;
     // console.log(this.firefliesMaterial.uniforms.uSize)
     // this.grass.material.uniforms.uTime.value = elapsedTime;

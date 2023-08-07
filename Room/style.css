@@ -442,8 +442,8 @@ svg{
   /* max-width: 1500px; */
 
     /* testing  */
-    outline-style: solid;
-    outline-color: rgb(4, 0, 255);
+    /* outline-style: solid;
+    outline-color: rgb(4, 0, 255); */
 }
 
 .hero1-main{
@@ -486,7 +486,7 @@ svg{
 .hero1-text{
   position: relative;
   height: 300px;
-  padding: 70px;
+  padding: 50px;
   top: calc(50% - 35vh);
   left: 0;
   right: 0;
@@ -521,8 +521,8 @@ svg{
 }
 .sub-hero1-text{
   position: relative;
-  height: 300px;
-  padding: 30px;
+  height: 200px;
+  padding: 50px;
   top: calc(50% - 35vh);
   left: 0;
   right: 0;
@@ -550,6 +550,10 @@ svg{
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent; 
   -moz-text-fill-color: transparent;
+
+    /* testing  */
+    /* outline-style: solid;
+    outline-color: yellow; */
 
 }
 
@@ -680,6 +684,7 @@ background: transparent url(/img/moonSmall.png) no-repeat;
 float: right;
 width: 400px;
 height: 400px;
+bottom: 25vh;
 position: relative;
 z-index: -1;
 animation: animate 4s infinite cubic-bezier(0,.02,1,.98) alternate;
