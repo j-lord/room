@@ -108,31 +108,31 @@ class Grass extends THREE.Mesh {
             side: THREE.DoubleSide,
             vertexShader:`
             varying vec2 vUv;
-  uniform float time;
-  
-	void main() {
+            uniform float time;
+            
+                void main() {
 
-    vUv = uv;
-    
-    // VERTEX POSITION
-    
-    vec4 mvPosition = vec4( position, 1.0 );
-    #ifdef USE_INSTANCING
-    	mvPosition = instanceMatrix * mvPosition;
-    #endif
-    
-    // DISPLACEMENT
-    
-    // here the displacement is made stronger on the blades tips.
-    float dispPower = 1.0 - cos( uv.y * 2.1 / 2.0 );
-    
-    float displacement = sin( mvPosition.z + uTime * 10.0 ) * ( 0.1 * dispPower );
-    mvPosition.z += displacement;
-    
-    //
-    
-    vec4 modelViewPosition = modelViewMatrix * mvPosition;
-    gl_Position = projectionMatrix * modelViewPosition;
+                vUv = uv;
+                
+                // VERTEX POSITION
+                
+                vec4 mvPosition = vec4( position, 1.0 );
+                #ifdef USE_INSTANCING
+                    mvPosition = instanceMatrix * mvPosition;
+                #endif
+                
+                // DISPLACEMENT
+                
+                // here the displacement is made stronger on the blades tips.
+                float dispPower = 1.0 - cos( uv.y * 2.1 / 2.0 );
+                
+                float displacement = sin( mvPosition.z + uTime * 10.0 ) * ( 0.1 * dispPower );
+                mvPosition.z += displacement;
+                
+                //
+                
+                vec4 modelViewPosition = modelViewMatrix * mvPosition;
+                gl_Position = projectionMatrix * modelViewPosition;
 
 	}
             `,

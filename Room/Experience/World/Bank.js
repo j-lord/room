@@ -294,14 +294,16 @@ const clock = new THREE.Clock()
 
 const tick = () =>
 {
-    var elapsedTime = clock.getElapsedTime()
+    var elapsedTime = -clock.getElapsedTime()
     // Update materials
     // this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
-    this.firefliesMaterial.uniforms.uTime.value = clock.getElapsedTime();
-    if (elapsedTime > 5){
+    this.firefliesMaterial.uniforms. uTime.value = elapsedTime;
+    while (this.firefliesMaterial.uniforms.uTime.value >= 5){
         // elapsedTime = 1
         // let elapsedTime = clock.getElapsedTime() - 5
-    var elapsedTime = elapsedTime - 5;
+    elapsedTime -=1;
+    this.firefliesMaterial.uniforms.uTime.value -= 1;
+
     }
     // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
     // console.log("elapsedTime: ", elapsedTime)

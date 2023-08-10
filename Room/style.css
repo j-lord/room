@@ -51,8 +51,8 @@ svg{
   rgb(24, 19, 19),rgb(36, 38, 63),rgb(103, 116, 157), rgb(144,130,137)); */
   /* background-color:black; */
         /* testing  */
-        outline-style: solid;
-        outline-color: orange;
+        /* outline-style: solid;
+        outline-color: orange; */
 }
 .dark-theme{
   --color-text: var(--color-text-dark);
@@ -76,26 +76,19 @@ svg{
   position: relative;
   width: 100vw;
   height: 80vh;
-  /* top: 100px; */
   z-index: -5;
-
   /* testing  */
   outline-style: solid;
   outline-color: rgb(255, 247, 0);
-  /* top: 100px;
-  bottom: 100px;
-  right: 100px;
-  left: 100px; */
-  
 }
 .experience-canvas2{
-  position: absolute;
-  top: 100px;
+  position: relative;
+  width: 100vw;
+  height: 80vh;
   z-index: -5;
-
-        /* testing  */
-      outline-style: solid;
-      outline-color: rgb(255, 0, 0);
+  /* testing  */
+  /* outline-style: solid;
+  outline-color: rgb(255, 0, 0); */
 }
 /* Web page itself -------------------------------- */
 .page{
@@ -230,7 +223,7 @@ svg{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  top: 48px;
+  top: 28px;
   right: 48px;
   z-index: 100000;
 }
@@ -395,9 +388,9 @@ svg{
   }
 
   /* testing  */
-  outline-style: solid;
+  /* outline-style: solid;
   outline-width: 12px;
-  outline-color: rgba(255, 0, 153, 0.744);
+  outline-color: rgba(255, 0, 153, 0.744); */
 }
 
 /* Hero sections  -------------------------------- */
@@ -411,9 +404,9 @@ svg{
   height: 100vh;
   margin-top: 8px;
   /* margin-left: 8px; */
-  outline-style: solid;
+  /* outline-style: solid;
   outline-width: 12px;
-  outline-color: green;
+  outline-color: green; */
 }
 .hero1-wrapper{
   position: relative;
@@ -435,8 +428,8 @@ svg{
   left: 0px;
   /* color: var(--color-text); */
   /* testing  */
-  outline-style: solid;
-  outline-color: red;
+  /* outline-style: solid;
+  outline-color: red; */
   overflow-y: hidden; 
   overflow-x: hidden;
   
@@ -534,9 +527,9 @@ svg{
   left: 4px;
   top: 4px;
   /* bottom:  10px; */
-  bottom: calc(75vh - 10px);
+  /* bottom: calc(75vh - 10px);
   outline-style: solid;
-  outline-color: cyan;
+  outline-color: cyan; */
 
 }
 .twinkling {
