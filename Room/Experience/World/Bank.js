@@ -301,8 +301,10 @@ const tick = () =>
     while (this.firefliesMaterial.uniforms.uTime.value >= 5){
         // elapsedTime = 1
         // let elapsedTime = clock.getElapsedTime() - 5
-    elapsedTime -=1;
-    this.firefliesMaterial.uniforms.uTime.value -= 1;
+        // make it so that the numbers count up (0>10 and then down 10>0)
+        // That should get rid of the blinking issue
+    elapsedTime -=10;
+    this.firefliesMaterial.uniforms.uTime.value -= 10;
 
     }
     // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
