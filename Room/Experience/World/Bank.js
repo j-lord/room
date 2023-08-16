@@ -294,20 +294,22 @@ const clock = new THREE.Clock()
 
 const tick = () =>
 {
-    var elapsedTime = -clock.getElapsedTime()
+    var elapsedTime = clock.getElapsedTime()
     // Update materials
     // this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
-    this.firefliesMaterial.uniforms. uTime.value = elapsedTime;
+    this.firefliesMaterial.uniforms. uTime.value = -elapsedTime;
     while (this.firefliesMaterial.uniforms.uTime.value >= 5){
+    // while (this.firefliesMaterial.uniforms.uTime.value <= 5){
         // elapsedTime = 1
         // let elapsedTime = clock.getElapsedTime() - 5
         // make it so that the numbers count up (0>10 and then down 10>0)
         // That should get rid of the blinking issue
-    elapsedTime -=10;
-    this.firefliesMaterial.uniforms.uTime.value -= 10;
-
+    // elapsedTime -=10;
+    // this.firefliesMaterial.uniforms.uTime.value -= 10;
+    this.firefliesMaterial.uniforms.uTime.value += 1;
+        // }
     }
-    // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
+    console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
     // console.log("elapsedTime: ", elapsedTime)
 
     // this.firefliesMaterial.uniforms.uSize.value = elapsedTime;
