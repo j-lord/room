@@ -307,6 +307,7 @@ const tick = () =>
     // elapsedTime -=10;
     // this.firefliesMaterial.uniforms.uTime.value -= 10;
     this.firefliesMaterial.uniforms.uTime.value += 1;
+    // still need to figure out why this is happening 
         // }
     }
     console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
