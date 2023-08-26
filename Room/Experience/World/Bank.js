@@ -295,10 +295,20 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     var elapsedTime = clock.getElapsedTime()
+    var direction = 1; // 1 for increasing, -1 for decreasing
+
     // Update materials
     // this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
     this.firefliesMaterial.uniforms. uTime.value = -elapsedTime;
-    while (this.firefliesMaterial.uniforms.uTime.value >= 5){
+    
+    if ((direction === 1 && this.firefliesMaterial.uniforms.uTime.value >= -5) || (direction === -1 && this.firefliesMaterial.uniforms.uTime.value <= 5)) {
+        direction *= -1; // Change direction when reaching the end or start value
+        this.firefliesMaterial.uniforms.uTime.value += 1;
+        // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
+
+    }
+
+    // while (this.firefliesMaterial.uniforms.uTime.value >= 5){
     // while (this.firefliesMaterial.uniforms.uTime.value <= 5){
         // elapsedTime = 1
         // let elapsedTime = clock.getElapsedTime() - 5
@@ -308,10 +318,10 @@ const tick = () =>
     // this.firefliesMaterial.uniforms.uTime.value -= 10;
     this.firefliesMaterial.uniforms.uTime.value += 1;
     // still need to figure out why this is happening 
-    // use chat to get the code that bounces back and fourth between 1 and -1
+    // use chat to get the code that bounces back and fourth between 1 and -1     
         // }
-    }
-    console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
+    // }
+    // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
     // console.log("elapsedTime: ", elapsedTime)
 
     // this.firefliesMaterial.uniforms.uSize.value = elapsedTime;
