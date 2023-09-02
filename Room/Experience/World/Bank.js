@@ -319,6 +319,7 @@ const tick = () =>
     this.firefliesMaterial.uniforms.uTime.value += 1;
     // still need to figure out why this is happening 
     // use chat to get the code that bounces back and fourth between 1 and -1     
+    // have the code just need to figure out how to bounce the values 
         // }
     // }
     // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
