@@ -10,7 +10,7 @@ export default [
     name: "bank",
     type: "glbModel",
     // path: "/textures/DemonSlayerLast30.mp4"
-    path: "/models/Bank.glb"
+    path: "/models/Bank2.glb"
 },
 {
     name: "grassTexture",
