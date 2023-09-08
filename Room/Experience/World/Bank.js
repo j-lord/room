@@ -280,10 +280,11 @@ export default class Bank{
 
     setAnimation(){
 
-    console.log(this.bank.animations)
-    this.mixer = new THREE.AnimationMixer(this.bank);
-
-    // this.swim = this.mixer.clipAction(this.room.animations[0]);
+        this.mixer = new THREE.AnimationMixer(this.bank);
+        console.log(this.mixer)
+    
+    this.swim = this.mixer.clipAction(this.bank.animations[0]);
+    // console.log(this.swim)
     // this.swim.play(); // play this, once the bank has an actual animation
 
 /**
