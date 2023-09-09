@@ -21,6 +21,7 @@ export default class Bank{
         // and assigns a name to each (i.e. this is the Bank)
         // this.bank = this.resources.items.bank.scene;
         this.bank = this.resources.items.bank.scene;    // Grabs the Bank from Resources
+        
         this.group = new THREE.Group();                 // Group for Bank and Fireflies
         this.lerp = {
             current: 0,
@@ -49,7 +50,6 @@ export default class Bank{
                         groupchild.receiveShadow = true;
                     });
                 }
-
             // if (child.name === "Grass"){
             //     console.log(this.resources.items)
             //     child.material = new THREE.MeshStandardMaterial({
@@ -70,11 +70,11 @@ export default class Bank{
         // }
 
         });
+        
         //////////////  TESTING /////////////////////
         const gridHelper = new THREE.GridHelper(5,5);
         this.scene.add(gridHelper)
         //////////////  TESTING /////////////////////
-
         this.group.add(this.bank)
         // this.group.add(this.grass)
     }

@@ -13,6 +13,12 @@ export default [
     path: "/models/Bank3.glb"
 },
 {
+    name: "tree",
+    type: "glbModel",
+    // path: "/textures/DemonSlayerLast30.mp4"
+    path: "/models/Tree.glb"
+},
+{
     name: "grassTexture",
     type: "glbModel",
     // path: "/textures/DemonSlayerLast30.mp4"
