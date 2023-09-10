@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import Experience from "../Experience.js"
 import GSAP from "gsap"
 import Grass from './Grass.js';
-import Grass2 from './Grass2.js';
 
 import Time from '../Utils/Time';
 export default class Bank{
@@ -21,7 +20,11 @@ export default class Bank{
         // and assigns a name to each (i.e. this is the Bank)
         // this.bank = this.resources.items.bank.scene;
         this.bank = this.resources.items.bank.scene;    // Grabs the Bank from Resources
-        
+        this.tree = this.resources.items.tree.scene;
+
+        console.log(this.tree)
+        // console.log(this.tree)
+
         this.group = new THREE.Group();                 // Group for Bank and Fireflies
         this.lerp = {
             current: 0,
@@ -30,7 +33,8 @@ export default class Bank{
         };
 
 
-        this.setBank();
+        // this.setBank();
+        this.setTree();
         this.setFireFlies();
         this.setGrass();
         // this.setTestPoint();
@@ -76,7 +80,14 @@ export default class Bank{
         this.scene.add(gridHelper)
         //////////////  TESTING /////////////////////
         this.group.add(this.bank)
-        // this.group.add(this.grass)
+    }
+
+    setTree(){
+        this.tree.children[0].children.forEach(child => {
+            child.castShadow = true;
+            child.receiveShadow = true;
+        })
+        this.group.add(this.tree)
     }
 
     setFireFlies(){
@@ -280,12 +291,13 @@ export default class Bank{
 
     setAnimation(){
 
-        this.mixer = new THREE.AnimationMixer(this.bank);
-        console.log(this.mixer)
-        console.log(this.bank.animations)
-    // this.swim = this.mixer.clipAction(this.bank.animations[0]);
-    // console.log(this.swim)
-    // this.swim.play(); // play this, once the bank has an actual animation
+        this.mixer = new THREE.AnimationMixer(this.resources.items.tree.animations[0]);
+        // console.log(this.resources.items.tree.animations[0])
+        // console.log("Bank animation")
+        // console.log(this.bank.animations)
+    // this.sway = this.mixer.clipAction(this.tree);
+    // console.log(this.sway)
+    // this.sway.play(); // play this, once the bank has an actual animation
 
 /**
  * Animate fireflies
