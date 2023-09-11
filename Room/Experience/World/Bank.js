@@ -20,7 +20,7 @@ export default class Bank{
         // and assigns a name to each (i.e. this is the Bank)
         // this.bank = this.resources.items.bank.scene;
         this.bank = this.resources.items.bank.scene;    // Grabs the Bank from Resources
-        this.tree = this.resources.items.tree.scene;
+        this.tree = this.resources.items.bank.scene.children[0];
 
         console.log(this.tree)
         // console.log(this.tree)
@@ -88,6 +88,7 @@ export default class Bank{
             child.receiveShadow = true;
         })
         this.group.add(this.tree)
+        // this.group.add(this.tree)
     }
 
     setFireFlies(){
@@ -291,13 +292,28 @@ export default class Bank{
 
     setAnimation(){
 
-        this.mixer = new THREE.AnimationMixer(this.resources.items.tree.animations[0]);
+        // this.mixer = new THREE.AnimationMixer(this.resources.items.tree.animations[0]);
+        // this.mixer = new THREE.AnimationMixer(this.tree);
         // console.log(this.resources.items.tree.animations[0])
-        // console.log("Bank animation")
-        // console.log(this.bank.animations)
-    // this.sway = this.mixer.clipAction(this.tree);
-    // console.log(this.sway)
+        // this.sway = this.mixer.clipAction(this.tree);
+        // console.log(this.sway)
     // this.sway.play(); // play this, once the bank has an actual animation
+
+    // this is how it was done for the fish tank
+    // this.mixer = new THREE.AnimationMixer(this.bank);
+    // this.swim = this.mixer.clipAction(this.room.animations[0]);
+    // this.swim.play(); // play this, once the bank has an actual animation
+
+    // console.log("Bank mixer")
+    // console.log(this.mixer)
+    this.mixer = new THREE.AnimationMixer(this.tree);
+    // this.sway = this.mixer.clipAction(this.resources.items.bank.animations[0])
+    this.sway = this.mixer.clipAction(this.resources.items.tree.animations[0]).play();
+    // this.sway = this.mixer.clipAction(THREE.AnimationUtils.subclip(this.resources.items.tree.animations[0], 'action', 0,20)).setDuration(10);
+    console.log(this.sway)
+    // this.sway.play();
+    // console.log("this.resources.items.bank.animations")
+    // console.log(this.resources.items.bank.animations)
 
 /**
  * Animate fireflies
@@ -370,9 +386,9 @@ tick()
         
         // update the fireflies material if the pixel ratio changes
         this.firefliesMaterial.uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 2)
-
         this.group.rotation.y = this.lerp.current;
-        this.mixer.update(this.time.delta * 0.0009);
+        this.mixer.update(this.time.delta * 0.0005);
+        
     }
 
 }
