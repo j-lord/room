@@ -306,6 +306,8 @@ export default class Bank{
 
     // console.log("Bank mixer")
     // console.log(this.mixer)
+
+
     this.mixer = new THREE.AnimationMixer(this.tree);
     // this.sway = this.mixer.clipAction(this.resources.items.bank.animations[0])
     this.mixer.clipAction(this.resources.items.tree.animations[0]).play();
@@ -363,7 +365,6 @@ const tick = () =>
     // console.log(this.firefliesMaterial.uniforms.uSize)
     // this.grass.material.uniforms.uTime.value = elapsedTime;
 
-    // this.grass.uniforms.uTime.value = elapsedTime
     window.requestAnimationFrame(tick)
 }
 
