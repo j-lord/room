@@ -311,10 +311,10 @@ export default class Bank{
     this.mixer = new THREE.AnimationMixer(this.tree);
     // this.sway = this.mixer.clipAction(this.resources.items.bank.animations[0])
     this.mixer.clipAction(this.resources.items.tree.animations[0]).play();
-    this.mixer.clipAction(this.resources.items.tree.animations[2]).play();
+    // this.mixer.clipAction(this.resources.items.tree.animations[2]).play();
     // this.mixer.clipAction(this.resources.items.tree.animations[69]).play();
     
-
+    // need to figure out what to do about the leaves animation
     // this.sway = this.mixer.clipAction(THREE.AnimationUtils.subclip(this.resources.items.tree.animations[0], 'action', 0,20)).setDuration(10);
     console.log("this.resources.items.tree")
     console.log(this.resources.items.tree)
