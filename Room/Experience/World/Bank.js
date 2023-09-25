@@ -335,7 +335,7 @@ const tick = () =>
 
     // Update materials
     // this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
-    this.firefliesMaterial.uniforms. uTime.value = -elapsedTime;
+    this.firefliesMaterial.uniforms.uTime.value = -elapsedTime;
     
     if ((direction === 1 && this.firefliesMaterial.uniforms.uTime.value >= -5) || (direction === -1 && this.firefliesMaterial.uniforms.uTime.value <= 5)) {
         direction *= -1; // Change direction when reaching the end or start value
@@ -353,6 +353,7 @@ const tick = () =>
     // elapsedTime -=10;
     // this.firefliesMaterial.uniforms.uTime.value -= 10;
     this.firefliesMaterial.uniforms.uTime.value += 1;
+    console.log(this.firefliesMaterial.uniforms.uTime.value)
     // still need to figure out why this is happening 
     // use chat to get the code that bounces back and fourth between 1 and -1     
     // have the code just need to figure out how to bounce the values 
