@@ -331,20 +331,25 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     var elapsedTime = clock.getElapsedTime()
-    var direction = 1; // 1 for increasing, -1 for decreasing
+    var direction; // 1 for increasing, -1 for decreasing
 
     // Update materials
     // this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
-    this.firefliesMaterial.uniforms.uTime.value = -elapsedTime;
+    this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
     
-    if ((direction === 1 && this.firefliesMaterial.uniforms.uTime.value >= -5) || (direction === -1 && this.firefliesMaterial.uniforms.uTime.value <= 5)) {
-        direction *= -1; // Change direction when reaching the end or start value
-        this.firefliesMaterial.uniforms.uTime.value += 1;
-        // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
+    // if ((this.firefliesMaterial.uniforms.uTime.value >= 5)) {
+        this.firefliesMaterial.uniforms.uTime.value = 2 * Math.sin(elapsedTime);
+        // direction == 1;
+    // }
 
+    if ((direction === 1 && this.firefliesMaterial.uniforms.uTime.value <= -5)) {
+        // direction *= -1; // Change direction when reaching the end or start value
+        this.firefliesMaterial.uniforms.uTime.value -= 1;
+        // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
     }
 
-    // while (this.firefliesMaterial.uniforms.uTime.value >= 5){
+
+    // while (this.firefliesMaterial.uniforms.uTime.value <= 5 && this.firefliesMaterial.uniforms.uTime.value >= -5){
     // while (this.firefliesMaterial.uniforms.uTime.value <= 5){
         // elapsedTime = 1
         // let elapsedTime = clock.getElapsedTime() - 5
@@ -352,6 +357,7 @@ const tick = () =>
         // That should get rid of the blinking issue
     // elapsedTime -=10;
     // this.firefliesMaterial.uniforms.uTime.value -= 10;
+    
     this.firefliesMaterial.uniforms.uTime.value += 1;
     console.log(this.firefliesMaterial.uniforms.uTime.value)
     // still need to figure out why this is happening 
