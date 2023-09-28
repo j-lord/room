@@ -332,20 +332,13 @@ const tick = () =>
 {
     var elapsedTime = clock.getElapsedTime()
     
-    // if (this.firefliesMaterial.uniforms.uTime.value < 5){
+    this.firefliesMaterial.uniforms.uTime.value = -elapsedTime
+    if (this.firefliesMaterial.uniforms.uTime.value < -3){
+        elapsedTime = 0
         this.firefliesMaterial.uniforms.uTime.value = elapsedTime
+        }
         // while (this.firefliesMaterial.uniforms.uTime.value >= -5)
         //     this.firefliesMaterial.uniforms.uTime.value = elapsedTime
-    // }
-
-    
-    // Update materials
-    // this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
-    // this.firefliesMaterial.uniforms.uTime.value = elapsedTime;
-    
-    // if ((this.firefliesMaterial.uniforms.uTime.value >= 5)) {
-        // this.firefliesMaterial.uniforms.uTime.value = 2 * Math.sin(elapsedTime);
-        // direction == 1;
     // }
 
     // if ((direction === 1 && this.firefliesMaterial.uniforms.uTime.value <= -5)) {
