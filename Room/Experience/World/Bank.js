@@ -341,13 +341,6 @@ const tick = () =>
         //     this.firefliesMaterial.uniforms.uTime.value = elapsedTime
     // }
 
-    // if ((direction === 1 && this.firefliesMaterial.uniforms.uTime.value <= -5)) {
-    //     // direction *= -1; // Change direction when reaching the end or start value
-    //     this.firefliesMaterial.uniforms.uTime.value -= 1;
-    //     // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
-    // }
-
-
     // while (this.firefliesMaterial.uniforms.uTime.value <= 5 && this.firefliesMaterial.uniforms.uTime.value >= -5){
     // while (this.firefliesMaterial.uniforms.uTime.value <= 5){
         // elapsedTime = 1
