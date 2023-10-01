@@ -333,10 +333,12 @@ const tick = () =>
     var elapsedTime = clock.getElapsedTime()
     
     this.firefliesMaterial.uniforms.uTime.value = -elapsedTime
-    if (this.firefliesMaterial.uniforms.uTime.value < -3){
-        elapsedTime = 0
-        this.firefliesMaterial.uniforms.uTime.value = elapsedTime
-        }
+    // if (this.firefliesMaterial.uniforms.uTime.value < -3){
+    //     elapsedTime = 0
+    //     this.firefliesMaterial.uniforms.uTime.value = elapsedTime
+    //     }
+
+    
         // while (this.firefliesMaterial.uniforms.uTime.value >= -5)
         //     this.firefliesMaterial.uniforms.uTime.value = elapsedTime
     // }
