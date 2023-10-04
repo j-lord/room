@@ -333,38 +333,11 @@ const tick = () =>
     var elapsedTime = clock.getElapsedTime()
     
     this.firefliesMaterial.uniforms.uTime.value = -elapsedTime
-    // if (this.firefliesMaterial.uniforms.uTime.value < -3){
-    //     elapsedTime = 0
-    //     this.firefliesMaterial.uniforms.uTime.value = elapsedTime
-    //     }
-
-    
-        // while (this.firefliesMaterial.uniforms.uTime.value >= -5)
-        //     this.firefliesMaterial.uniforms.uTime.value = elapsedTime
-    // }
-
-    // while (this.firefliesMaterial.uniforms.uTime.value <= 5 && this.firefliesMaterial.uniforms.uTime.value >= -5){
-    // while (this.firefliesMaterial.uniforms.uTime.value <= 5){
-        // elapsedTime = 1
-        // let elapsedTime = clock.getElapsedTime() - 5
-        // make it so that the numbers count up (0>10 and then down 10>0)
-        // That should get rid of the blinking issue
-    // elapsedTime -=10;
-    // this.firefliesMaterial.uniforms.uTime.value -= 10;
-    
-    this.firefliesMaterial.uniforms.uTime.value += 1;
     console.log(this.firefliesMaterial.uniforms.uTime.value)
-    // still need to figure out why this is happening 
-    // use chat to get the code that bounces back and fourth between 1 and -1     
-    // have the code just need to figure out how to bounce the values 
-        // }
-    // }
+    
     // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
     // console.log("elapsedTime: ", elapsedTime)
 
-    // this.firefliesMaterial.uniforms.uSize.value = elapsedTime;
-    // console.log(this.firefliesMaterial.uniforms.uSize)
-    // this.grass.material.uniforms.uTime.value = elapsedTime;
 
     window.requestAnimationFrame(tick)
 }
