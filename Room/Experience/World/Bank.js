@@ -336,7 +336,6 @@ const tick = () =>
     console.log(this.firefliesMaterial.uniforms.uTime.value)
     
     // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
-    // console.log("elapsedTime: ", elapsedTime)
 
 
     window.requestAnimationFrame(tick)
