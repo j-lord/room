@@ -242,11 +242,13 @@ export default class Bank{
             uniform float uSize;
             attribute float aScale;
 
+            // particle movement
             void main()
             {
                 vec4 modelPosition = modelMatrix * vec4(position, 0.8);
                 // the multiplier at the end is the speed the particles move
-                modelPosition.y += sin(uTime + modelPosition.y * 100.0) * aScale * 0.08;
+                // changed the modelPosition to use the z index as the index that influences movement
+                modelPosition.z += sin(uTime + modelPosition.z * 100.0) * aScale * 0.08;
                 vec4 viewPosition = viewMatrix * modelPosition;
                 vec4 projectionPosition = projectionMatrix * viewPosition;
             
@@ -256,6 +258,7 @@ export default class Bank{
             }`,
             fragmentShader:
             `
+            // particle color
             void main()
             {
                 // get the distance from the center of the particle to the outside
@@ -331,9 +334,9 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     var elapsedTime = clock.getElapsedTime()
-    
-    this.firefliesMaterial.uniforms.uTime.value = -elapsedTime
-    console.log(this.firefliesMaterial.uniforms.uTime.value)
+    // bounce between +/- 2s  =>  (Math.sin(time * 4)) / 2 
+    this.firefliesMaterial.uniforms.uTime.value = (Math.sin(elapsedTime) * 4) / 2
+    // console.log(this.firefliesMaterial.uniforms.uTime.value)
     
     // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
 
