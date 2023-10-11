@@ -307,9 +307,6 @@ export default class Bank{
     // this.swim = this.mixer.clipAction(this.room.animations[0]);
     // this.swim.play(); // play this, once the bank has an actual animation
 
-    // console.log("Bank mixer")
-    // console.log(this.mixer)
-
     this.mixer = new THREE.AnimationMixer(this.tree);
     // this.sway = this.mixer.clipAction(this.resources.items.bank.animations[0])
     this.mixer.clipAction(this.resources.items.tree.animations[0]).play();
