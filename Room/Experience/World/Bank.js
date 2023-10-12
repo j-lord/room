@@ -332,9 +332,6 @@ const tick = () =>
     // bounce between +/- 2s  =>  (Math.sin(time * 4)) / 2 
     this.firefliesMaterial.uniforms.uTime.value = (Math.sin(elapsedTime/2) * 4) / 2
     console.log(this.firefliesMaterial.uniforms.uTime.value)
-    
-    // console.log("uTime.value: ", this.firefliesMaterial.uniforms.uTime.value)
-
 
     window.requestAnimationFrame(tick)
 }
@@ -349,7 +346,6 @@ tick()
             this.rotation = ((e.clientX - window.innerWidth / 2) * 1) / window.innerWidth;
             this.lerp.target = this.rotation * 0.06;
             // this.lerp.target = this.rotation * 4;
-            
         });
     }
 
