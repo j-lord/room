@@ -21,10 +21,9 @@ export default class Bank{
         // this.bank = this.resources.items.bank.scene;
         this.bank = this.resources.items.bank.scene;    // Grabs the Bank from Resources
         this.tree = this.resources.items.bank.scene.children[0];
-
         console.log(this.tree)
-        // console.log(this.tree)
 
+        
         this.group = new THREE.Group();                 // Group for Bank and Fireflies
         this.lerp = {
             current: 0,
@@ -33,7 +32,7 @@ export default class Bank{
         };
 
 
-        // this.setBank();
+        this.setBank();
         this.setTree();
         this.setFireFlies();
         this.setGrass();
@@ -330,9 +329,7 @@ const tick = () =>
 {
     var elapsedTime = clock.getElapsedTime()
     // bounce between +/- 2s  =>  (Math.sin(time * 4)) / 2 
-    this.firefliesMaterial.uniforms.uTime.value = (Math.sin(elapsedTime/2) * 4) / 2
-    console.log(this.firefliesMaterial.uniforms.uTime.value)
-
+    this.firefliesMaterial.uniforms.uTime.value = (Math.sin(elapsedTime/4) * 4)
     window.requestAnimationFrame(tick)
 }
 
