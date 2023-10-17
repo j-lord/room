@@ -32,7 +32,9 @@ export default class Bank{
         };
 
 
-        this.setBank();
+        // commenting out the bank for now
+        // this.setBank(); 
+
         this.setTree();
         this.setFireFlies();
         this.setGrass();
@@ -285,12 +287,10 @@ export default class Bank{
 
     
     }
-
-        // this is for the fish tank animation
+    // this is for the fish tank animation
     // still need to figure out how to make the fish move correctly
     // https://youtu.be/nfvPq__Prts?t=617
     // look at the link above for animation reference for bouncing
-
 
     setAnimation(){
 
@@ -336,7 +336,6 @@ const tick = () =>
 tick()
 
     }
-
     // listen for mouse movement and normalize x (-1,1)
     onMouseMove(){
         window.addEventListener("mousemove", (e) => {
@@ -353,7 +352,6 @@ tick()
             this.lerp.ease
         );
 
-        
         // update the fireflies material if the pixel ratio changes
         this.firefliesMaterial.uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 2)
         this.group.rotation.y = this.lerp.current;
