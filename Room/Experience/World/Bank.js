@@ -31,8 +31,7 @@ export default class Bank{
             ease: 0.1,
         };
 
-
-        // commenting out the bank for now
+        // set bank
         // this.setBank(); 
 
         this.setTree();
@@ -283,9 +282,7 @@ export default class Bank{
 
         this.testPoint = new THREE.Points(testGeometry, this.testMaterial)
         this.group.add(this.testPoint)
-        this.scene.add(this.group);
-
-    
+        this.scene.add(this.group);    
     }
     // this is for the fish tank animation
     // still need to figure out how to make the fish move correctly
@@ -293,13 +290,12 @@ export default class Bank{
     // look at the link above for animation reference for bouncing
 
     setAnimation(){
-
         // this.mixer = new THREE.AnimationMixer(this.resources.items.tree.animations[0]);
         // this.mixer = new THREE.AnimationMixer(this.tree);
         // console.log(this.resources.items.tree.animations[0])
         // this.sway = this.mixer.clipAction(this.tree);
         // console.log(this.sway)
-    // this.sway.play(); // play this, once the bank has an actual animation
+        // this.sway.play(); // play this, once the bank has an actual animation
 
     // this is how it was done for the fish tank
     // this.mixer = new THREE.AnimationMixer(this.bank);
@@ -310,16 +306,14 @@ export default class Bank{
     // this.sway = this.mixer.clipAction(this.resources.items.bank.animations[0])
     this.mixer.clipAction(this.resources.items.tree.animations[0]).play();
     
-
     // need to figure out what to do about the leaves animation
     // this.sway = this.mixer.clipAction(THREE.AnimationUtils.subclip(this.resources.items.tree.animations[0], 'action', 0,20)).setDuration(10);
     console.log("this.resources.items.tree")
     console.log(this.resources.items.tree)
     // this.sway.play();
-    // console.log("this.resources.items.bank.animations")
     // console.log(this.resources.items.bank.animations)
 
-/**
+/*
  * Animate fireflies
  */
 // can we replace with clock with this.time.something?
