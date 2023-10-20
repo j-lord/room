@@ -127,7 +127,6 @@ export default class Bank{
             uniform float uSize;
             attribute float aScale;
             varying vec3 vColor;
-
             
             void main()
             {
@@ -297,6 +296,7 @@ export default class Bank{
         // console.log(this.sway)
         // this.sway.play(); // play this, once the bank has an actual animation
 
+        
     // this is how it was done for the fish tank
     // this.mixer = new THREE.AnimationMixer(this.bank);
     // this.swim = this.mixer.clipAction(this.room.animations[0]);
