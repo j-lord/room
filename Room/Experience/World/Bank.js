@@ -176,7 +176,7 @@ export default class Bank{
             // // Random number between +exclusionRadius (inclusive) and 1 (exclusive)
             // const randomNumberGreaterRadius = Math.random() * (exclusionRad) + exclusionRad;
             // // Random number between -1 (exclusive) and -exclusionRadius (inclusive)
-            // const randomNumberLessRadius = Math.random() * -(exclusionRad) - exclusionRad;
+
             positionArray[i * 3 + 0] = (Math.random() * (exclusionRad) + exclusionRad);
             positionArray[i * 3 + 1] = (Math.random() + particleHeight) * spreadMultiplier
             positionArray[i * 3 + 2] = (Math.random() - spreadMultiplier) * length
@@ -215,7 +215,6 @@ export default class Bank{
     setGrass(){
 
     }
-
     setTestPoint(){
         const testArray = new Float32Array(3)
         testArray[0]=-0.5
@@ -296,7 +295,7 @@ export default class Bank{
         // console.log(this.sway)
         // this.sway.play(); // play this, once the bank has an actual animation
 
-        
+
     // this is how it was done for the fish tank
     // this.mixer = new THREE.AnimationMixer(this.bank);
     // this.swim = this.mixer.clipAction(this.room.animations[0]);
