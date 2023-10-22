@@ -72,7 +72,6 @@ export default class Bank{
         //                 map: this.resources.items.screen, // commenting this screen play for now
         //             });
         // }
-
         });
         
         //////////////  TESTING /////////////////////
@@ -175,9 +174,7 @@ export default class Bank{
         {
             // // Random number between +exclusionRadius (inclusive) and 1 (exclusive)
             // const randomNumberGreaterRadius = Math.random() * (exclusionRad) + exclusionRad;
-            // // Random number between -1 (exclusive) and -exclusionRadius (inclusive)
-
-            positionArray[i * 3 + 0] = (Math.random() * (exclusionRad) + exclusionRad);
+                        positionArray[i * 3 + 0] = (Math.random() * (exclusionRad) + exclusionRad);
             positionArray[i * 3 + 1] = (Math.random() + particleHeight) * spreadMultiplier
             positionArray[i * 3 + 2] = (Math.random() - spreadMultiplier) * length
             scaleArray[i] = Math.random()
@@ -295,12 +292,6 @@ export default class Bank{
         // console.log(this.sway)
         // this.sway.play(); // play this, once the bank has an actual animation
 
-
-    // this is how it was done for the fish tank
-    // this.mixer = new THREE.AnimationMixer(this.bank);
-    // this.swim = this.mixer.clipAction(this.room.animations[0]);
-    // this.swim.play(); // play this, once the bank has an actual animation
-
     this.mixer = new THREE.AnimationMixer(this.tree);
     // this.sway = this.mixer.clipAction(this.resources.items.bank.animations[0])
     this.mixer.clipAction(this.resources.items.tree.animations[0]).play();
@@ -315,7 +306,6 @@ export default class Bank{
 /*
  * Animate fireflies
  */
-// can we replace with clock with this.time.something?
 const clock = new THREE.Clock()
 
 const tick = () =>
