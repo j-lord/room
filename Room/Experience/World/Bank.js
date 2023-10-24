@@ -302,7 +302,6 @@ export default class Bank{
     console.log(this.resources.items.tree)
     // this.sway.play();
     // console.log(this.resources.items.bank.animations)
-
 /*
  * Animate fireflies
  */
@@ -315,7 +314,6 @@ const tick = () =>
     this.firefliesMaterial.uniforms.uTime.value = (Math.sin(elapsedTime/4) * 4)
     window.requestAnimationFrame(tick)
 }
-
 tick()
 
     }
