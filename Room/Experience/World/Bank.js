@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import Experience from "../Experience.js"
 import GSAP from "gsap"
 import Grass from './Grass.js';
-
 import Time from '../Utils/Time';
 export default class Bank{
     constructor(){
@@ -306,7 +305,6 @@ export default class Bank{
  * Animate fireflies
  */
 const clock = new THREE.Clock()
-
 const tick = () =>
 {
     var elapsedTime = clock.getElapsedTime()
