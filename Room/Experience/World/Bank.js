@@ -21,7 +21,6 @@ export default class Bank{
         this.bank = this.resources.items.bank.scene;    // Grabs the Bank from Resources
         this.tree = this.resources.items.bank.scene.children[0];
         console.log(this.tree)
-
         
         this.group = new THREE.Group();                 // Group for Bank and Fireflies
         this.lerp = {
@@ -29,10 +28,8 @@ export default class Bank{
             target: 0,
             ease: 0.1,
         };
-
         // set bank
         // this.setBank(); 
-
         this.setTree();
         this.setFireFlies();
         this.setGrass();
