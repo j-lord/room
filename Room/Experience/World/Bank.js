@@ -14,7 +14,6 @@ export default class Bank{
         // Grass2 constructor(size, count)
         // this.grass = new Grass(5, 30);
         this.grass = new Grass();
-
         // Resources.js pulls the assets in from assets.js file and this file then takes the assets from Resources
         // and assigns a name to each (i.e. this is the Bank)
         // this.bank = this.resources.items.bank.scene;
@@ -56,9 +55,7 @@ export default class Bank{
             //         map: this.resources.items.grassTexture,
             //         color: "#ff00ff",
             //     });
-            
-            // }
-
+                // }
         // Will leave this here in case there is a time you want to 
         // put an ATM screen next to the bank or something similar
         // if (child.name === "Computer") {
@@ -69,7 +66,6 @@ export default class Bank{
         //             });
         // }
         });
-        
         //////////////  TESTING /////////////////////
         const gridHelper = new THREE.GridHelper(5,5);
         this.scene.add(gridHelper)
