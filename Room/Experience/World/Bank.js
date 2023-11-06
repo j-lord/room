@@ -199,10 +199,9 @@ export default class Bank{
         this.group.add(this.fireflies)
         this.scene.add(this.group);
     }
-
     // next step is to apply realistic grass to the green lawn around the bank
     setGrass(){
-
+        // really need to figure out if we are going to use the grass generator or use a shader like with the fireflies
     }
     setTestPoint(){
         const testArray = new Float32Array(3)
