@@ -37,6 +37,8 @@ export default class Bank{
         this.onMouseMove();
         this.update();
     }
+
+    // this is a test line to make sure that the git command is working correctly
     
     setBank(){
             // This ensures that everything in the screen receives a shadow
