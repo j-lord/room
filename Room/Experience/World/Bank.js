@@ -39,7 +39,7 @@ export default class Bank{
     }
 
     // this is a test line to make sure that the git command is working correctly
-    
+    // need to animate the house going from a level 1 to a level 2
     setBank(){
             // This ensures that everything in the screen receives a shadow
             this.bank.children.forEach(child => {
