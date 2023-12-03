@@ -195,7 +195,8 @@ export default class Bank{
 
         // if debugging
         // this.setTestPoint();
-
+        
+        
         // Points
         this.fireflies = new THREE.Points(firefliesGeometry, this.firefliesMaterial)        
         this.group.add(this.fireflies)
