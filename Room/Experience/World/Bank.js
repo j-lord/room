@@ -196,7 +196,7 @@ export default class Bank{
         // if debugging
         // this.setTestPoint();
         
-        
+
         // Points
         this.fireflies = new THREE.Points(firefliesGeometry, this.firefliesMaterial)        
         this.group.add(this.fireflies)
@@ -233,6 +233,7 @@ export default class Bank{
 
             // particle movement
             void main()
+
             {
                 vec4 modelPosition = modelMatrix * vec4(position, 0.8);
                 // the multiplier at the end is the speed the particles move
@@ -279,6 +280,7 @@ export default class Bank{
     // look at the link above for animation reference for bouncing
 
     setAnimation(){
+
         // this.mixer = new THREE.AnimationMixer(this.resources.items.tree.animations[0]);
         // this.mixer = new THREE.AnimationMixer(this.tree);
         // console.log(this.resources.items.tree.animations[0])
@@ -309,6 +311,7 @@ const tick = () =>
 }
 tick()
 
+
     }
     // listen for mouse movement and normalize x (-1,1)
     onMouseMove(){
@@ -316,6 +319,7 @@ tick()
             this.rotation = ((e.clientX - window.innerWidth / 2) * 1) / window.innerWidth;
             this.lerp.target = this.rotation * 0.06;
             // this.lerp.target = this.rotation * 4;
+            // the target value changes how  aggressive the object moves
         });
     }
 
