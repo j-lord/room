@@ -27,6 +27,8 @@ export default class Bank{
             target: 0,
             ease: 0.1,
         };
+
+
         // set bank
         // this.setBank(); 
         this.setTree();
@@ -58,6 +60,8 @@ export default class Bank{
             //         color: "#ff00ff",
             //     });
                 // }
+
+                
         // Will leave this here in case there is a time you want to 
         // put an ATM screen next to the bank or something similar
         // if (child.name === "Computer") {
